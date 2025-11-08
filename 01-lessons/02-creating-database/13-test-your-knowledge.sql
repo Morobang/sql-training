@@ -1,387 +1,528 @@
 -- ============================================================================
--- Lesson 13: Test Your Knowledge
+-- Lesson 13: Test Your Knowledge - RetailStore Challenges
 -- ============================================================================
--- Comprehensive exercises covering all Chapter 02 concepts
--- Prerequisites: Complete Lessons 01-12
+-- Comprehensive exercises using the RetailStore database
+-- Prerequisites: Lessons 01-12 completed
 
-USE BookStore;
+USE RetailStore;
 GO
 
 PRINT 'Lesson 13: Test Your Knowledge';
 PRINT '==============================';
 PRINT '';
-PRINT 'This lesson contains practice exercises covering:';
-PRINT '  • Database creation and management';
-PRINT '  • Data types (character, numeric, temporal)';
-PRINT '  • Table creation and constraints';
-PRINT '  • Data insertion, retrieval, updates, and deletion';
+PRINT 'Complete these challenges using the RetailStore database';
+PRINT 'Solutions are provided at the bottom (try first!)';
 PRINT '';
 
 -- ============================================================================
--- EXERCISE SET 1: Database and Table Creation
+-- CHALLENGE SET 1: Data Retrieval (SELECT)
 -- ============================================================================
 
-PRINT 'Exercise Set 1: Database and Table Creation';
+PRINT 'Challenge Set 1: Data Retrieval';
+PRINT '================================';
+PRINT '';
+PRINT 'Challenge 1.1: List all products in the Electronics category with price > $50';
+PRINT 'Challenge 1.2: Show all customers from Washington state (WA)';
+PRINT 'Challenge 1.3: Find employees hired in 2020 or later';
+PRINT 'Challenge 1.4: Display product name, price, and inventory value (price * qty)';
+PRINT 'Challenge 1.5: Show products that need reordering (stock < reorder level)';
+PRINT '';
+
+-- ============================================================================
+-- CHALLENGE SET 2: Calculations and Formatting
+-- ============================================================================
+
+PRINT 'Challenge Set 2: Calculations and Formatting';
+PRINT '============================================';
+PRINT '';
+PRINT 'Challenge 2.1: Calculate profit margin for each product (Price - Cost) / Cost * 100';
+PRINT 'Challenge 2.2: Show customer full names and complete addresses';
+PRINT 'Challenge 2.3: Display employee tenure in years';
+PRINT 'Challenge 2.4: Format product prices as currency with $ sign';
+PRINT 'Challenge 2.5: Show order totals (sum of LineTotal from OrderDetails)';
+PRINT '';
+
+-- ============================================================================
+-- CHALLENGE SET 3: Joining Tables
+-- ============================================================================
+
+PRINT 'Challenge Set 3: Joining Tables';
+PRINT '================================';
+PRINT '';
+PRINT 'Challenge 3.1: Show products with their category and supplier names';
+PRINT 'Challenge 3.2: List orders with customer names and employee names';
+PRINT 'Challenge 3.3: Show order details with product names and prices';
+PRINT 'Challenge 3.4: Display employees with their department names and managers';
+PRINT 'Challenge 3.5: Create a complete sales report (orders + customers + products)';
+PRINT '';
+
+-- ============================================================================
+-- CHALLENGE SET 4: Data Modification
+-- ============================================================================
+
+PRINT 'Challenge Set 4: Data Modification';
+PRINT '==================================';
+PRINT '';
+PRINT 'Challenge 4.1: Insert a new product in the Furniture category';
+PRINT 'Challenge 4.2: Update all Stationery products to give 5% discount';
+PRINT 'Challenge 4.3: Increase stock by 20 for all products below reorder level';
+PRINT 'Challenge 4.4: Change order status from Pending to Processing';
+PRINT 'Challenge 4.5: Soft delete (IsActive = 0) for a specific customer';
+PRINT '';
+
+-- ============================================================================
+-- CHALLENGE SET 5: Advanced Queries
+-- ============================================================================
+
+PRINT 'Challenge Set 5: Advanced Queries';
+PRINT '==================================';
+PRINT '';
+PRINT 'Challenge 5.1: Find the top 3 most expensive products';
+PRINT 'Challenge 5.2: Count how many products in each category';
+PRINT 'Challenge 5.3: Calculate total sales amount per customer';
+PRINT 'Challenge 5.4: Show products never ordered';
+PRINT 'Challenge 5.5: Find customers who placed more than 1 order';
+PRINT '';
+
+-- ============================================================================
+-- SOLUTIONS
+-- ============================================================================
+
+PRINT '';
+PRINT '========================================';
+PRINT 'SOLUTIONS (Scroll down, try first!)';
+PRINT '========================================';
+PRINT '';
+PRINT '';
+PRINT '';
+PRINT '';
+PRINT '';
+
+-- ============================================================================
+-- SOLUTIONS: Challenge Set 1
+-- ============================================================================
+
+PRINT 'SOLUTIONS: Challenge Set 1 - Data Retrieval';
 PRINT '===========================================';
 PRINT '';
-PRINT '1. Create a database named LibraryDB';
-PRINT '2. Create Authors table: AuthorID (PK, IDENTITY), AuthorName (NOT NULL, UNIQUE)';
-PRINT '3. Create Books table with:';
-PRINT '   - BookID (PK, IDENTITY)';
-PRINT '   - Title (NVARCHAR(200), NOT NULL)';
-PRINT '   - ISBN (NVARCHAR(20), UNIQUE)';
-PRINT '   - Price (DECIMAL(10,2), CHECK >= 0)';
-PRINT '   - PublishDate (DATE)';
-PRINT '   - AuthorID (FK to Authors)';
-PRINT '';
 
--- SOLUTIONS (uncomment to run):
+-- Challenge 1.1
+PRINT 'Challenge 1.1: Electronics products > $50';
 /*
-CREATE DATABASE LibraryDB;
-GO
-
-USE LibraryDB;
-GO
-
-CREATE TABLE Authors (
-    AuthorID INT PRIMARY KEY IDENTITY(1,1),
-    AuthorName NVARCHAR(100) NOT NULL UNIQUE
-);
-
-CREATE TABLE Books (
-    BookID INT PRIMARY KEY IDENTITY(1,1),
-    Title NVARCHAR(200) NOT NULL,
-    ISBN NVARCHAR(20) UNIQUE,
-    Price DECIMAL(10,2) CHECK (Price >= 0),
-    PublishDate DATE,
-    AuthorID INT,
-    CONSTRAINT FK_Books_Authors FOREIGN KEY (AuthorID) 
-        REFERENCES Authors(AuthorID)
-);
+SELECT 
+    p.ProductName,
+    p.Price,
+    p.QuantityInStock
+FROM Inventory.Products p
+JOIN Inventory.Categories c ON p.CategoryID = c.CategoryID
+WHERE c.CategoryName = 'Electronics' AND p.Price > 50
+ORDER BY p.Price DESC;
 */
 
--- ============================================================================
--- EXERCISE SET 2: Data Insertion
--- ============================================================================
-
-PRINT 'Exercise Set 2: Data Insertion';
-PRINT '==============================';
-PRINT '';
-PRINT '1. Insert 3 authors into Authors table';
-PRINT '2. Insert 5 books into Books table (use different authors)';
-PRINT '3. Insert 3 more books in a single INSERT statement';
-PRINT '';
-
--- SOLUTIONS:
+-- Challenge 1.2
+PRINT 'Challenge 1.2: Customers from Washington';
 /*
-INSERT INTO Authors (AuthorName) VALUES (N'George Orwell');
-INSERT INTO Authors (AuthorName) VALUES (N'Jane Austen');
-INSERT INTO Authors (AuthorName) VALUES (N'Mark Twain');
-
-INSERT INTO Books (Title, ISBN, Price, PublishDate, AuthorID) VALUES
-    (N'1984', N'978-0451524935', 15.99, '1949-06-08', 1),
-    (N'Animal Farm', N'978-0451526342', 12.99, '1945-08-17', 1),
-    (N'Pride and Prejudice', N'978-0141439518', 11.99, '1813-01-28', 2),
-    (N'Emma', N'978-0141439587', 10.99, '1815-12-23', 2),
-    (N'Tom Sawyer', N'978-0486400778', 8.99, '1876-06-01', 3);
-
-INSERT INTO Books (Title, ISBN, Price, PublishDate, AuthorID) VALUES
-    (N'Sense and Sensibility', N'978-0141439662', 11.99, '1811-10-30', 2),
-    (N'Huckleberry Finn', N'978-0486280615', 9.99, '1884-12-10', 3),
-    (N'Coming Up for Air', N'978-0156207508', 13.99, '1939-06-12', 1);
+SELECT 
+    FirstName,
+    LastName,
+    City,
+    Email
+FROM Sales.Customers
+WHERE State = 'WA'
+ORDER BY City, LastName;
 */
 
--- ============================================================================
--- EXERCISE SET 3: Data Retrieval
--- ============================================================================
-
-PRINT 'Exercise Set 3: Data Retrieval';
-PRINT '==============================';
-PRINT '';
-PRINT '1. SELECT all books with their author names';
-PRINT '2. SELECT books published after 1900';
-PRINT '3. SELECT author name and count of books they wrote';
-PRINT '4. SELECT books priced between $10 and $15';
-PRINT '5. SELECT most expensive book';
-PRINT '';
-
--- SOLUTIONS:
+-- Challenge 1.3
+PRINT 'Challenge 1.3: Employees hired 2020 or later';
 /*
--- Query 1
 SELECT 
-    b.Title,
-    b.ISBN,
-    b.Price,
-    a.AuthorName
-FROM Books b
-JOIN Authors a ON b.AuthorID = a.AuthorID;
+    FirstName + ' ' + LastName AS EmployeeName,
+    JobTitle,
+    HireDate
+FROM HR.Employees
+WHERE YEAR(HireDate) >= 2020
+ORDER BY HireDate;
+*/
 
--- Query 2
-SELECT Title, PublishDate
-FROM Books
-WHERE PublishDate > '1900-01-01'
-ORDER BY PublishDate;
-
--- Query 3
+-- Challenge 1.4
+PRINT 'Challenge 1.4: Products with inventory value';
+/*
 SELECT 
-    a.AuthorName,
-    COUNT(b.BookID) AS BookCount
-FROM Authors a
-LEFT JOIN Books b ON a.AuthorID = b.AuthorID
-GROUP BY a.AuthorName;
+    ProductName,
+    Price,
+    QuantityInStock,
+    Price * QuantityInStock AS InventoryValue
+FROM Inventory.Products
+WHERE QuantityInStock > 0
+ORDER BY InventoryValue DESC;
+*/
 
--- Query 4
-SELECT Title, Price
-FROM Books
-WHERE Price BETWEEN 10 AND 15
-ORDER BY Price;
+-- Challenge 1.5
+PRINT 'Challenge 1.5: Products needing reorder';
+/*
+SELECT 
+    ProductName,
+    QuantityInStock AS CurrentStock,
+    ReorderLevel,
+    ReorderLevel - QuantityInStock AS UnitsNeeded
+FROM Inventory.Products
+WHERE QuantityInStock < ReorderLevel
+ORDER BY UnitsNeeded DESC;
+*/
 
--- Query 5
-SELECT TOP 1 Title, Price
-FROM Books
+PRINT '';
+
+-- ============================================================================
+-- SOLUTIONS: Challenge Set 2
+-- ============================================================================
+
+PRINT 'SOLUTIONS: Challenge Set 2 - Calculations';
+PRINT '=========================================';
+PRINT '';
+
+-- Challenge 2.1
+PRINT 'Challenge 2.1: Profit margin calculation';
+/*
+SELECT 
+    ProductName,
+    Price,
+    Cost,
+    Price - Cost AS Profit,
+    ROUND((Price - Cost) / Cost * 100, 2) AS [Profit Margin %]
+FROM Inventory.Products
+WHERE Cost IS NOT NULL AND Cost > 0
+ORDER BY [Profit Margin %] DESC;
+*/
+
+-- Challenge 2.2
+PRINT 'Challenge 2.2: Customer full addresses';
+/*
+SELECT 
+    FirstName + ' ' + LastName AS FullName,
+    CONCAT(Address, ', ', City, ', ', State, ' ', ZipCode) AS FullAddress,
+    Email
+FROM Sales.Customers
+ORDER BY LastName;
+*/
+
+-- Challenge 2.3
+PRINT 'Challenge 2.3: Employee tenure';
+/*
+SELECT 
+    FirstName + ' ' + LastName AS Employee,
+    JobTitle,
+    HireDate,
+    DATEDIFF(YEAR, HireDate, GETDATE()) AS YearsOfService,
+    DATEDIFF(MONTH, HireDate, GETDATE()) % 12 AS AdditionalMonths
+FROM HR.Employees
+ORDER BY YearsOfService DESC;
+*/
+
+-- Challenge 2.4
+PRINT 'Challenge 2.4: Formatted currency';
+/*
+SELECT 
+    ProductName,
+    '$' + CAST(Price AS VARCHAR(20)) AS PriceFormatted,
+    FORMAT(Price, 'C', 'en-US') AS PriceCurrency
+FROM Inventory.Products
 ORDER BY Price DESC;
 */
 
--- ============================================================================
--- EXERCISE SET 4: Data Updates
--- ============================================================================
-
-PRINT 'Exercise Set 4: Data Updates';
-PRINT '============================';
-PRINT '';
-PRINT '1. Increase all book prices by 10%';
-PRINT '2. Update specific book ISBN';
-PRINT '3. Update books published before 1850 - add "Classic" to title';
-PRINT '';
-
--- SOLUTIONS:
+-- Challenge 2.5
+PRINT 'Challenge 2.5: Order totals';
 /*
--- Update 1
-UPDATE Books
-SET Price = Price * 1.10;
-
-SELECT Title, Price FROM Books;
-
--- Update 2
-UPDATE Books
-SET ISBN = N'978-NEW-ISBN-123'
-WHERE BookID = 1;
-
--- Update 3
-UPDATE Books
-SET Title = N'[Classic] ' + Title
-WHERE PublishDate < '1850-01-01' AND Title NOT LIKE '[Classic]%';
-
-SELECT Title, PublishDate FROM Books;
+SELECT 
+    o.OrderID,
+    c.FirstName + ' ' + c.LastName AS Customer,
+    o.OrderDate,
+    SUM(od.LineTotal) AS OrderTotal,
+    FORMAT(SUM(od.LineTotal), 'C') AS FormattedTotal
+FROM Sales.Orders o
+JOIN Sales.Customers c ON o.CustomerID = c.CustomerID
+JOIN Sales.OrderDetails od ON o.OrderID = od.OrderID
+GROUP BY o.OrderID, c.FirstName, c.LastName, o.OrderDate
+ORDER BY OrderTotal DESC;
 */
 
+PRINT '';
+
 -- ============================================================================
--- EXERCISE SET 5: Table Modification
+-- SOLUTIONS: Challenge Set 3
 -- ============================================================================
 
-PRINT 'Exercise Set 5: Table Modification';
+PRINT 'SOLUTIONS: Challenge Set 3 - Joins';
 PRINT '==================================';
 PRINT '';
-PRINT '1. Add InStock column (BIT, DEFAULT 1) to Books';
-PRINT '2. Add PageCount column (INT) to Books';
-PRINT '3. Add CHECK constraint: PageCount > 0';
-PRINT '4. Update some books to set PageCount';
-PRINT '';
 
--- SOLUTIONS:
+-- Challenge 3.1
+PRINT 'Challenge 3.1: Products with category and supplier';
 /*
--- Modification 1
-ALTER TABLE Books
-ADD InStock BIT DEFAULT 1;
-
--- Modification 2
-ALTER TABLE Books
-ADD PageCount INT;
-
--- Modification 3
-ALTER TABLE Books
-ADD CONSTRAINT CK_Books_PageCount CHECK (PageCount > 0);
-
--- Modification 4
-UPDATE Books SET PageCount = 328 WHERE Title LIKE '%1984%';
-UPDATE Books SET PageCount = 112 WHERE Title LIKE '%Animal Farm%';
-UPDATE Books SET PageCount = 279 WHERE Title LIKE '%Pride%';
-
-SELECT Title, PageCount, InStock FROM Books;
+SELECT 
+    p.ProductName,
+    c.CategoryName,
+    ISNULL(s.SupplierName, 'No Supplier') AS Supplier,
+    p.Price
+FROM Inventory.Products p
+JOIN Inventory.Categories c ON p.CategoryID = c.CategoryID
+LEFT JOIN Inventory.Suppliers s ON p.SupplierID = s.SupplierID
+ORDER BY c.CategoryName, p.ProductName;
 */
 
--- ============================================================================
--- EXERCISE SET 6: Data Deletion
--- ============================================================================
-
-PRINT 'Exercise Set 6: Data Deletion';
-PRINT '=============================';
-PRINT '';
-PRINT '1. Create a Members table (MemberID, Name, JoinDate, Status)';
-PRINT '2. Insert 5 members with various join dates and statuses';
-PRINT '3. DELETE members who joined before 2020';
-PRINT '4. DELETE members with Status = ''Inactive''';
-PRINT '';
-
--- SOLUTIONS:
+-- Challenge 3.2
+PRINT 'Challenge 3.2: Orders with customer and employee';
 /*
-CREATE TABLE Members (
-    MemberID INT PRIMARY KEY IDENTITY(1,1),
-    Name NVARCHAR(100),
-    JoinDate DATE,
-    Status NVARCHAR(20)
-);
-
-INSERT INTO Members (Name, JoinDate, Status) VALUES
-    (N'Alice Johnson', '2018-05-15', N'Active'),
-    (N'Bob Smith', '2020-07-20', N'Active'),
-    (N'Carol Williams', '2019-03-10', N'Inactive'),
-    (N'David Brown', '2021-09-05', N'Active'),
-    (N'Eve Davis', '2022-01-12', N'Inactive');
-
-SELECT * FROM Members;
-
--- Delete old members
-DELETE FROM Members WHERE JoinDate < '2020-01-01';
-SELECT * FROM Members;
-
--- Delete inactive members
-DELETE FROM Members WHERE Status = N'Inactive';
-SELECT * FROM Members;
-
-DROP TABLE Members;
+SELECT 
+    o.OrderID,
+    c.FirstName + ' ' + c.LastName AS Customer,
+    e.FirstName + ' ' + e.LastName AS SalesPerson,
+    o.OrderDate,
+    o.Status
+FROM Sales.Orders o
+JOIN Sales.Customers c ON o.CustomerID = c.CustomerID
+LEFT JOIN HR.Employees e ON o.EmployeeID = e.EmployeeID
+ORDER BY o.OrderDate DESC;
 */
 
--- ============================================================================
--- CHALLENGE EXERCISES
--- ============================================================================
-
-PRINT '';
-PRINT 'Challenge Exercises';
-PRINT '===================';
-PRINT '';
-PRINT 'CHALLENGE 1: Create a complete library checkout system';
-PRINT '  - Members table (MemberID, Name, Email, JoinDate)';
-PRINT '  - Checkouts table (CheckoutID, BookID, MemberID, CheckoutDate, ReturnDate)';
-PRINT '  - Add appropriate constraints and relationships';
-PRINT '  - Insert test data';
-PRINT '  - Query: Find all overdue books (ReturnDate NULL and CheckoutDate > 14 days ago)';
-PRINT '';
-PRINT 'CHALLENGE 2: Create book ratings system';
-PRINT '  - Add Ratings table (RatingID, BookID, MemberID, Rating 1-5, ReviewDate)';
-PRINT '  - Query: Average rating per book';
-PRINT '  - Query: Books with rating > 4.0';
-PRINT '';
-PRINT 'CHALLENGE 3: Inventory management';
-PRINT '  - Add QuantityInStock column to Books';
-PRINT '  - Create procedure to "checkout" book (decrease quantity)';
-PRINT '  - Create procedure to "return" book (increase quantity)';
-PRINT '  - Add CHECK constraint: QuantityInStock >= 0';
-PRINT '';
-
--- SOLUTIONS:
+-- Challenge 3.3
+PRINT 'Challenge 3.3: Order details with product info';
 /*
--- CHALLENGE 1
-CREATE TABLE Members (
-    MemberID INT PRIMARY KEY IDENTITY(1,1),
-    Name NVARCHAR(100) NOT NULL,
-    Email NVARCHAR(100) UNIQUE,
-    JoinDate DATE DEFAULT CAST(GETDATE() AS DATE)
-);
-
-CREATE TABLE Checkouts (
-    CheckoutID INT PRIMARY KEY IDENTITY(1,1),
-    BookID INT NOT NULL,
-    MemberID INT NOT NULL,
-    CheckoutDate DATE DEFAULT CAST(GETDATE() AS DATE),
-    ReturnDate DATE NULL,
-    CONSTRAINT FK_Checkouts_Books FOREIGN KEY (BookID) REFERENCES Books(BookID),
-    CONSTRAINT FK_Checkouts_Members FOREIGN KEY (MemberID) REFERENCES Members(MemberID)
-);
-
-INSERT INTO Members (Name, Email) VALUES
-    (N'Alice Johnson', N'alice@email.com'),
-    (N'Bob Smith', N'bob@email.com');
-
-INSERT INTO Checkouts (BookID, MemberID, CheckoutDate, ReturnDate) VALUES
-    (1, 1, '2025-01-01', '2025-01-10'),
-    (2, 1, '2025-01-20', NULL),  -- Still checked out
-    (3, 2, '2024-12-15', NULL);  -- Overdue!
-
--- Overdue books query
 SELECT 
-    m.Name AS Member,
-    b.Title AS Book,
-    c.CheckoutDate,
-    DATEDIFF(DAY, c.CheckoutDate, GETDATE()) AS DaysOut
-FROM Checkouts c
-JOIN Books b ON c.BookID = b.BookID
-JOIN Members m ON c.MemberID = m.MemberID
-WHERE c.ReturnDate IS NULL 
-  AND DATEDIFF(DAY, c.CheckoutDate, GETDATE()) > 14;
-
--- CHALLENGE 2
-CREATE TABLE Ratings (
-    RatingID INT PRIMARY KEY IDENTITY(1,1),
-    BookID INT NOT NULL,
-    MemberID INT NOT NULL,
-    Rating INT CHECK (Rating BETWEEN 1 AND 5),
-    ReviewDate DATE DEFAULT CAST(GETDATE() AS DATE),
-    CONSTRAINT FK_Ratings_Books FOREIGN KEY (BookID) REFERENCES Books(BookID),
-    CONSTRAINT FK_Ratings_Members FOREIGN KEY (MemberID) REFERENCES Members(MemberID)
-);
-
-INSERT INTO Ratings (BookID, MemberID, Rating) VALUES
-    (1, 1, 5), (1, 2, 4),
-    (2, 1, 5), (2, 2, 5),
-    (3, 1, 3);
-
--- Average rating per book
-SELECT 
-    b.Title,
-    AVG(CAST(r.Rating AS DECIMAL(3,2))) AS AvgRating,
-    COUNT(r.RatingID) AS RatingCount
-FROM Books b
-LEFT JOIN Ratings r ON b.BookID = r.BookID
-GROUP BY b.Title
-HAVING COUNT(r.RatingID) > 0
-ORDER BY AvgRating DESC;
-
--- Books with rating > 4.0
-SELECT 
-    b.Title,
-    AVG(CAST(r.Rating AS DECIMAL(3,2))) AS AvgRating
-FROM Books b
-JOIN Ratings r ON b.BookID = r.BookID
-GROUP BY b.BookID, b.Title
-HAVING AVG(CAST(r.Rating AS DECIMAL(3,2))) > 4.0;
+    od.OrderID,
+    p.ProductName,
+    od.Quantity,
+    od.UnitPrice,
+    od.Discount,
+    od.LineTotal
+FROM Sales.OrderDetails od
+JOIN Inventory.Products p ON od.ProductID = p.ProductID
+ORDER BY od.OrderID, p.ProductName;
 */
 
--- ============================================================================
--- CLEANUP
--- ============================================================================
+-- Challenge 3.4
+PRINT 'Challenge 3.4: Employees with departments and managers';
+/*
+SELECT 
+    e.FirstName + ' ' + e.LastName AS Employee,
+    e.JobTitle,
+    d.DepartmentName,
+    m.FirstName + ' ' + m.LastName AS Manager
+FROM HR.Employees e
+JOIN HR.Departments d ON e.DepartmentID = d.DepartmentID
+LEFT JOIN HR.Employees m ON d.ManagerID = m.EmployeeID
+ORDER BY d.DepartmentName, e.LastName;
+*/
+
+-- Challenge 3.5
+PRINT 'Challenge 3.5: Complete sales report';
+/*
+SELECT 
+    o.OrderID,
+    c.FirstName + ' ' + c.LastName AS Customer,
+    e.FirstName + ' ' + e.LastName AS SalesPerson,
+    p.ProductName,
+    cat.CategoryName,
+    od.Quantity,
+    od.UnitPrice,
+    od.LineTotal,
+    o.OrderDate
+FROM Sales.Orders o
+JOIN Sales.Customers c ON o.CustomerID = c.CustomerID
+JOIN HR.Employees e ON o.EmployeeID = e.EmployeeID
+JOIN Sales.OrderDetails od ON o.OrderID = od.OrderID
+JOIN Inventory.Products p ON od.ProductID = p.ProductID
+JOIN Inventory.Categories cat ON p.CategoryID = cat.CategoryID
+ORDER BY o.OrderDate, o.OrderID;
+*/
 
 PRINT '';
-PRINT 'To clean up test database:';
-PRINT '  USE master;';
-PRINT '  DROP DATABASE IF EXISTS LibraryDB;';
+
+-- ============================================================================
+-- SOLUTIONS: Challenge Set 4
+-- ============================================================================
+
+PRINT 'SOLUTIONS: Challenge Set 4 - Data Modification';
+PRINT '==============================================';
 PRINT '';
+
+-- Challenge 4.1
+PRINT 'Challenge 4.1: Insert new furniture product';
+/*
+INSERT INTO Inventory.Products (ProductName, CategoryID, SupplierID, SKU, Price, Cost, QuantityInStock, ReorderLevel)
+VALUES ('Executive Leather Chair', 2, 4, 'FURN-CHA-002', 349.99, 180.00, 10, 5);
+
+SELECT * FROM Inventory.Products WHERE SKU = 'FURN-CHA-002';
+*/
+
+-- Challenge 4.2
+PRINT 'Challenge 4.2: 5% discount on Stationery';
+/*
+UPDATE p
+SET Price = Price * 0.95
+FROM Inventory.Products p
+JOIN Inventory.Categories c ON p.CategoryID = c.CategoryID
+WHERE c.CategoryName = 'Stationery';
+
+SELECT p.ProductName, p.Price
+FROM Inventory.Products p
+JOIN Inventory.Categories c ON p.CategoryID = c.CategoryID
+WHERE c.CategoryName = 'Stationery';
+*/
+
+-- Challenge 4.3
+PRINT 'Challenge 4.3: Increase stock for low inventory';
+/*
+UPDATE Inventory.Products
+SET QuantityInStock = QuantityInStock + 20
+WHERE QuantityInStock < ReorderLevel;
+
+SELECT ProductName, QuantityInStock, ReorderLevel
+FROM Inventory.Products
+WHERE QuantityInStock < ReorderLevel + 20;
+*/
+
+-- Challenge 4.4
+PRINT 'Challenge 4.4: Update order status';
+/*
+UPDATE Sales.Orders
+SET Status = 'Processing'
+OUTPUT 
+    inserted.OrderID,
+    deleted.Status AS OldStatus,
+    inserted.Status AS NewStatus
+WHERE Status = 'Pending';
+*/
+
+-- Challenge 4.5
+PRINT 'Challenge 4.5: Soft delete customer';
+/*
+UPDATE Sales.Customers
+SET IsActive = 0
+WHERE CustomerID = 1005;  -- Or specific customer
+
+SELECT FirstName, LastName, Email, IsActive
+FROM Sales.Customers
+WHERE CustomerID = 1005;
+*/
+
+PRINT '';
+
+-- ============================================================================
+-- SOLUTIONS: Challenge Set 5
+-- ============================================================================
+
+PRINT 'SOLUTIONS: Challenge Set 5 - Advanced Queries';
+PRINT '=============================================';
+PRINT '';
+
+-- Challenge 5.1
+PRINT 'Challenge 5.1: Top 3 most expensive products';
+/*
+SELECT TOP 3
+    ProductName,
+    Price,
+    c.CategoryName
+FROM Inventory.Products p
+JOIN Inventory.Categories c ON p.CategoryID = c.CategoryID
+ORDER BY Price DESC;
+*/
+
+-- Challenge 5.2
+PRINT 'Challenge 5.2: Product count per category';
+/*
+SELECT 
+    c.CategoryName,
+    COUNT(p.ProductID) AS ProductCount,
+    AVG(p.Price) AS AvgPrice,
+    SUM(p.QuantityInStock) AS TotalStock
+FROM Inventory.Categories c
+LEFT JOIN Inventory.Products p ON c.CategoryID = p.CategoryID
+GROUP BY c.CategoryName
+ORDER BY ProductCount DESC;
+*/
+
+-- Challenge 5.3
+PRINT 'Challenge 5.3: Total sales per customer';
+/*
+SELECT 
+    c.CustomerID,
+    c.FirstName + ' ' + c.LastName AS Customer,
+    COUNT(DISTINCT o.OrderID) AS OrderCount,
+    SUM(od.LineTotal) AS TotalSpent,
+    FORMAT(SUM(od.LineTotal), 'C') AS FormattedTotal
+FROM Sales.Customers c
+JOIN Sales.Orders o ON c.CustomerID = o.CustomerID
+JOIN Sales.OrderDetails od ON o.OrderID = od.OrderID
+GROUP BY c.CustomerID, c.FirstName, c.LastName
+ORDER BY TotalSpent DESC;
+*/
+
+-- Challenge 5.4
+PRINT 'Challenge 5.4: Products never ordered';
+/*
+SELECT 
+    p.ProductName,
+    c.CategoryName,
+    p.Price,
+    p.QuantityInStock
+FROM Inventory.Products p
+JOIN Inventory.Categories c ON p.CategoryID = c.CategoryID
+WHERE NOT EXISTS (
+    SELECT 1 FROM Sales.OrderDetails od WHERE od.ProductID = p.ProductID
+)
+ORDER BY c.CategoryName, p.ProductName;
+*/
+
+-- Challenge 5.5
+PRINT 'Challenge 5.5: Customers with multiple orders';
+/*
+SELECT 
+    c.FirstName + ' ' + c.LastName AS Customer,
+    c.Email,
+    COUNT(o.OrderID) AS OrderCount
+FROM Sales.Customers c
+JOIN Sales.Orders o ON c.CustomerID = o.CustomerID
+GROUP BY c.CustomerID, c.FirstName, c.LastName, c.Email
+HAVING COUNT(o.OrderID) > 1
+ORDER BY OrderCount DESC;
+*/
+
+PRINT '';
+
+-- ============================================================================
+-- SUMMARY
+-- ============================================================================
 
 PRINT '';
 PRINT '====================================';
 PRINT '✓ Lesson 13 Complete!';
 PRINT '====================================';
 PRINT '';
-PRINT 'Congratulations! You have completed Chapter 02: Creating Databases and Tables!';
+PRINT 'Congratulations! You have completed Chapter 02: Database Fundamentals!';
 PRINT '';
-PRINT 'You have learned:';
-PRINT '  ✓ Database creation and management';
-PRINT '  ✓ Character, numeric, and temporal data types';
-PRINT '  ✓ Table creation with constraints';
-PRINT '  ✓ Primary and foreign keys';
-PRINT '  ✓ INSERT, SELECT, UPDATE, DELETE operations';
-PRINT '  ✓ Table modifications';
-PRINT '  ✓ Best practices for data management';
+PRINT 'Skills Mastered:';
+PRINT '  ✓ Database creation and schemas';
+PRINT '  ✓ Table design with proper data types';
+PRINT '  ✓ Primary keys, foreign keys, constraints';
+PRINT '  ✓ INSERT data (single, multiple, with relationships)';
+PRINT '  ✓ SELECT queries (columns, filters, joins)';
+PRINT '  ✓ UPDATE data (single, multiple, with calculations)';
+PRINT '  ✓ DELETE data (soft delete vs hard delete)';
+PRINT '  ✓ Data calculations and formatting';
+PRINT '  ✓ Multi-table queries with JOINs';
 PRINT '';
-PRINT 'Next Chapter: Querying Data (Filtering, Joins, Aggregation)';
+PRINT 'RetailStore Database Stats:';
+SELECT 
+    SCHEMA_NAME(t.schema_id) AS SchemaName,
+    t.name AS TableName,
+    SUM(p.rows) AS RowCount
+FROM sys.tables t
+JOIN sys.partitions p ON t.object_id = p.object_id
+WHERE SCHEMA_NAME(t.schema_id) IN ('Sales', 'Inventory', 'HR')
+  AND p.index_id IN (0,1)
+GROUP BY SCHEMA_NAME(t.schema_id), t.name
+ORDER BY SchemaName, TableName;
+
+PRINT '';
+PRINT 'Next Chapter: Advanced Queries (WHERE, ORDER BY, GROUP BY, HAVING)';
 PRINT '';
