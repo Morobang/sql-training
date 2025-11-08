@@ -22,6 +22,17 @@ This comprehensive SQL training program takes you from absolute beginner to adva
 - **Advanced Features**: Views, stored procedures, triggers, analytics
 - **Real-World Skills**: Projects simulating actual business scenarios
 
+### ⚡ New: Executable SQL Scripts!
+
+**Learn by doing!** Every lesson now includes practical `.sql` files you can run on your own SQL Server:
+
+- 🔧 **Setup Scripts**: One-click database setup
+- 📝 **Example Scripts**: Working code for every concept
+- 🎯 **Exercise Scripts**: Hands-on practice with solutions
+- ✅ **Run & Learn**: Execute on your system, see real results
+
+👉 See [HOW-TO-USE-SCRIPTS.md](./01-lessons/02-creating-database/HOW-TO-USE-SCRIPTS.md) to get started!
+
 ### 👥 Who This Course Is For
 
 - ✅ **Complete Beginners** - No prior SQL or database experience needed
@@ -59,6 +70,8 @@ Comprehensive lessons organized by topic and difficulty
 - Table design and creation
 - Inserting, updating, and deleting data
 - Working with the Sakila sample database
+
+**✨ NEW**: Includes practical `.sql` scripts you can run! See [HOW-TO-USE-SCRIPTS.md](./01-lessons/02-creating-database/HOW-TO-USE-SCRIPTS.md)
 
 #### 📙 Chapter 3: Query Primer (2-3 hours)
 - Query mechanics and execution
