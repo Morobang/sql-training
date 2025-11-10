@@ -681,7 +681,7 @@ GROUP BY c.CategoryName;
 
 ## Next Lesson
 
-**Continue to [Lesson 3: SQL Joins - Advanced](../03-sql-joins-advanced/03-sql-joins-advanced.md)**  
+**Continue to [Lesson 3: SQL Joins - Advanced](../03-sql-joins-advanced/sql-joins-advanced.md)**  
 Learn about LEFT, RIGHT, FULL OUTER, CROSS, and SELF joins.
 
 ---

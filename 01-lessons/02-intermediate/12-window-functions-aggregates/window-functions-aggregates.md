@@ -225,4 +225,4 @@ ORDER BY Revenue DESC;
 
 ## Next Lesson
 
-Continue to [Lesson 13: Window Functions - Ranking](../13-window-functions-ranking/13-window-functions-ranking.md).
+Continue to [Lesson 13: Window Functions - Ranking](../13-window-functions-ranking/window-functions-ranking.md).

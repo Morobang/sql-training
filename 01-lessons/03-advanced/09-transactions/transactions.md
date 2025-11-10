@@ -431,4 +431,4 @@ INNER JOIN sys.dm_exec_sessions s ON st.session_id = s.session_id;
 
 ## Next Lesson
 
-Continue to [Lesson 10: Query Optimization & Performance Tips](../10-query-optimization/10-query-optimization.md).
+Continue to [Lesson 10: Query Optimization & Performance Tips](../10-query-optimization/query-optimization.md).

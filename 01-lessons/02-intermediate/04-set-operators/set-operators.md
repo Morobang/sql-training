@@ -156,4 +156,4 @@ INNER JOIN OrderDetails od ON p.ProductID = od.ProductID;
 
 ## Next Lesson
 
-Continue to [Lesson 5: String Functions](../05-string-functions/05-string-functions.md).
+Continue to [Lesson 5: String Functions](../05-string-functions/string-functions.md).

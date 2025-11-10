@@ -61,4 +61,4 @@ WHERE POWER(Price, 2) > 10000;
 
 ## Next Lesson
 
-Continue to [Lesson 7: Date & Time Functions](../07-date-time-functions/07-date-time-functions.md).
+Continue to [Lesson 7: Date & Time Functions](../07-date-time-functions/date-time-functions.md).

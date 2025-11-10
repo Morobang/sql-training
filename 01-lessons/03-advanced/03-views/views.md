@@ -259,4 +259,4 @@ WHERE c.Region = (SELECT Region FROM Users WHERE UserID = SUSER_SNAME());
 
 ## Next Lesson
 
-Continue to [Lesson 4: Stored Procedures](../04-stored-procedures/04-stored-procedures.md).
+Continue to [Lesson 4: Stored Procedures](../04-stored-procedures/stored-procedures.md).

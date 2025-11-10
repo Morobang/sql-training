@@ -204,4 +204,4 @@ FROM CustomerSpending;
 
 ## Next Lesson
 
-Continue to [Lesson 10: Aggregate Functions & GROUP BY](../10-aggregate-functions/10-aggregate-functions.md).
+Continue to [Lesson 10: Aggregate Functions & GROUP BY](../10-aggregate-functions/aggregate-functions.md).

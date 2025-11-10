@@ -368,4 +368,4 @@ ALTER TABLE Products ENABLE TRIGGER ALL;
 
 ## Next Lesson
 
-Continue to [Lesson 7: Indexes & Performance](../07-indexes-performance/07-indexes-performance.md).
+Continue to [Lesson 7: Indexes & Performance](../07-indexes-performance/indexes-performance.md).

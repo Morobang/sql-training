@@ -271,4 +271,4 @@ WHERE p.Price > AvgPrices.AvgPrice;
 
 ## Next Lesson
 
-Continue to [Lesson 2: Common Table Expressions (CTEs)](../02-ctes/02-ctes.md).
+Continue to [Lesson 2: Common Table Expressions (CTEs)](../02-ctes/ctes.md).

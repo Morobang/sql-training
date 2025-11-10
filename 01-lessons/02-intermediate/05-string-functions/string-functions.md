@@ -105,4 +105,4 @@ WHERE Email LIKE '%@%';
 
 ## Next Lesson
 
-Continue to [Lesson 6: Numeric Functions](../06-numeric-functions/06-numeric-functions.md).
+Continue to [Lesson 6: Numeric Functions](../06-numeric-functions/numeric-functions.md).

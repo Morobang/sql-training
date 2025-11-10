@@ -120,4 +120,4 @@ ORDER BY Yr DESC, Mth DESC;
 
 ## Next Lesson
 
-Continue to [Lesson 8: NULL Functions](../08-null-functions/08-null-functions.md).
+Continue to [Lesson 8: NULL Functions](../08-null-functions/null-functions.md).

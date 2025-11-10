@@ -182,4 +182,4 @@ FROM CategoryStats;
 
 ## Next Lesson
 
-Continue to [Lesson 9: CASE Expressions](../09-case-expressions/09-case-expressions.md).
+Continue to [Lesson 9: CASE Expressions](../09-case-expressions/case-expressions.md).

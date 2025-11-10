@@ -372,4 +372,4 @@ END;
 
 ## Next Lesson
 
-Continue to [Lesson 5: Functions (UDFs)](../05-functions/05-functions.md).
+Continue to [Lesson 5: Functions (UDFs)](../05-functions/functions.md).

@@ -251,4 +251,4 @@ HAVING AVG(Price) > 50;
 
 ## Next Lesson
 
-Continue to [Lesson 11: Window Functions - Basics](../11-window-functions-basics/11-window-functions-basics.md).
+Continue to [Lesson 11: Window Functions - Basics](../11-window-functions-basics/window-functions-basics.md).

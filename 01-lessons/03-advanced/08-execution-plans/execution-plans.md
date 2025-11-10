@@ -391,4 +391,4 @@ ALTER DATABASE YourDB SET QUERY_STORE = ON;
 
 ## Next Lesson
 
-Continue to [Lesson 9: Transactions Deep Dive](../09-transactions/09-transactions.md).
+Continue to [Lesson 9: Transactions Deep Dive](../09-transactions/transactions.md).

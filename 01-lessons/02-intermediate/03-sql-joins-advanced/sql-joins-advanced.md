@@ -175,4 +175,4 @@ WHERE o.OrderDate >= '2024-01-01' OR o.OrderID IS NULL; -- different semantics
 
 ## Next Lesson
 
-Continue to [Lesson 4: Set Operators](../04-set-operators/04-set-operators.md).
+Continue to [Lesson 4: Set Operators](../04-set-operators/set-operators.md).

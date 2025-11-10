@@ -325,4 +325,4 @@ DROP FUNCTION dbo.fn_CalculateTax;
 
 ## Next Lesson
 
-Continue to [Lesson 6: Triggers](../06-triggers/06-triggers.md).
+Continue to [Lesson 6: Triggers](../06-triggers/triggers.md).

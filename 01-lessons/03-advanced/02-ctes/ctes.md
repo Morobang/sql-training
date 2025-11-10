@@ -293,4 +293,4 @@ OPTION (MAXRECURSION 366);
 
 ## Next Lesson
 
-Continue to [Lesson 3: Views](../03-views/03-views.md).
+Continue to [Lesson 3: Views](../03-views/views.md).

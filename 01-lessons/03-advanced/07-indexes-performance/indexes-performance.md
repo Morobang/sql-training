@@ -391,4 +391,4 @@ DEALLOCATE index_cursor;
 
 ## Next Lesson
 
-Continue to [Lesson 8: Execution Plans](../08-execution-plans/08-execution-plans.md).
+Continue to [Lesson 8: Execution Plans](../08-execution-plans/execution-plans.md).

@@ -257,4 +257,4 @@ WHERE RowNum = 1;
 
 ## Next Lesson
 
-Continue to [Lesson 14: Window Functions - Value Functions](../14-window-functions-value/14-window-functions-value.md).
+Continue to [Lesson 14: Window Functions - Value Functions](../14-window-functions-value/window-functions-value.md).

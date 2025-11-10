@@ -817,7 +817,7 @@ WHERE (Price > 500 AND CategoryID = 1)
 
 ## Next Lesson
 
-**Continue to [Lesson 2: SQL Joins - Basics](../02-sql-joins-basics/02-sql-joins-basics.md)**  
+**Continue to [Lesson 2: SQL Joins - Basics](../02-sql-joins-basics/sql-joins-basics.md)**  
 Learn to combine data from multiple tables using INNER JOIN.
 
 ---

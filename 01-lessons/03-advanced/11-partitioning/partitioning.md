@@ -389,4 +389,4 @@ WHERE SaleDate >= '2024-01-01' AND SaleDate < '2025-01-01';
 
 ## Next Lesson
 
-Continue to [Lesson 12: Advanced Analytics & AI with SQL](../12-advanced-analytics/12-advanced-analytics.md).
+Continue to [Lesson 12: Advanced Analytics & AI with SQL](../12-advanced-analytics/advanced-analytics.md).

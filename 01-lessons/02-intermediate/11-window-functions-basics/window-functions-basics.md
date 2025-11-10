@@ -213,4 +213,4 @@ FROM ProductAvg;
 
 ## Next Lesson
 
-Continue to [Lesson 12: Window Functions - Aggregates & Frames](../12-window-functions-aggregates/12-window-functions-aggregates.md).
+Continue to [Lesson 12: Window Functions - Aggregates & Frames](../12-window-functions-aggregates/window-functions-aggregates.md).

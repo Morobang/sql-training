@@ -438,4 +438,4 @@ Before deploying a query, check:
 
 ## Next Lesson
 
-Continue to [Lesson 11: Partitioning & Sharding](../11-partitioning/11-partitioning.md).
+Continue to [Lesson 11: Partitioning & Sharding](../11-partitioning/partitioning.md).
