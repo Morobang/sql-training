@@ -27,26 +27,39 @@ By the end of this lesson, you will be able to:
 
 ### What Can You Do with SQL?
 
-```sql
--- Retrieve data
-SELECT name, email FROM customers;
+SQL lets you work with data in databases. Here are the main operations:
 
--- Insert data
-INSERT INTO customers (name, email) VALUES ('John Doe', 'john@example.com');
-
--- Update data
-UPDATE customers SET email = 'newemail@example.com' WHERE id = 1;
-
--- Delete data
-DELETE FROM customers WHERE id = 1;
-
--- Create structures
-CREATE TABLE products (
-    id INT PRIMARY KEY,
-    name VARCHAR(100),
-    price DECIMAL(10,2)
-);
+**1. Ask Questions (Query)**
 ```
+"Show me all customer names"
+"Find products under $50"
+```
+
+**2. Add New Information**
+```
+"Add a new customer named John"
+"Record a new product"
+```
+
+**3. Update Information**
+```
+"Change customer's email address"
+"Update product price"
+```
+
+**4. Remove Information**
+```
+"Delete old orders"
+"Remove inactive customers"
+```
+
+**5. Organize Data**
+```
+"Create a new table for employees"
+"Set up product categories"
+```
+
+**We'll learn to write SQL commands for all of these!**
 
 ## Databases vs DBMS
 
@@ -199,70 +212,76 @@ SELECT * FROM customers LIMIT 10;
 
 ## Real-World Example
 
-**Scenario:** E-commerce company needs to find best customers.
+**Scenario:** An online store tracks customer orders.
 
+**Questions the business asks:**
+- "How many orders did we get today?"
+- "Which products are selling best?"
+- "Who are our top customers?"
+- "What's our total revenue this month?"
+
+**SQL answers all of these questions quickly!**
+
+Instead of manually counting through spreadsheets with thousands of rows, SQL can find the answer in seconds.
+
+**Example Question:** "Show me all customers"
+
+**SQL Answer:**
 ```sql
--- Find customers who spent over $1000 in 2024
-SELECT 
-    c.customer_id,
-    c.name,
-    c.email,
-    SUM(o.total_amount) AS total_spent
-FROM customers c
-JOIN orders o ON c.customer_id = o.customer_id
-WHERE YEAR(o.order_date) = 2024
-GROUP BY c.customer_id, c.name, c.email
-HAVING SUM(o.total_amount) > 1000
-ORDER BY total_spent DESC;
+SELECT name, email FROM customers;
 ```
 
-**This single query:**
-- ✅ Joins two tables
-- ✅ Filters by year
-- ✅ Calculates totals
-- ✅ Finds high-value customers
-- ✅ Sorts results
+**Result:**
+```
+name          | email
+--------------+----------------------
+John Doe      | john@example.com
+Jane Smith    | jane@example.com
+Bob Johnson   | bob@example.com
+```
 
-**Without SQL, this would require complex programming!**
+That's it! One simple command retrieves the data you need.
 
 ## SQL Categories
 
-SQL commands are grouped into categories:
+SQL commands fall into different categories. Don't worry about memorizing these now - you'll learn them as we go!
 
-### 1. DQL (Data Query Language)
-Retrieve data
+### 1. **SELECT** - Ask Questions
+Get data from the database
 ```sql
-SELECT * FROM customers;
+SELECT name FROM customers;
 ```
+*"Show me customer names"*
 
-### 2. DDL (Data Definition Language)
-Define structures
+### 2. **INSERT** - Add New Data
+Put new information into the database
+```sql
+INSERT INTO customers (name) VALUES ('John');
+```
+*"Add a new customer"*
+
+### 3. **UPDATE** - Change Data
+Modify existing information
+```sql
+UPDATE customers SET email = 'new@email.com';
+```
+*"Update customer email"*
+
+### 4. **DELETE** - Remove Data
+Delete information from the database
+```sql
+DELETE FROM customers WHERE id = 5;
+```
+*"Remove a customer"*
+
+### 5. **CREATE** - Build Structure
+Make new tables to organize data
 ```sql
 CREATE TABLE customers (id INT, name VARCHAR(100));
 ```
+*"Create a place to store customer data"*
 
-### 3. DML (Data Manipulation Language)
-Modify data
-```sql
-INSERT INTO customers VALUES (1, 'John Doe');
-UPDATE customers SET name = 'Jane Doe' WHERE id = 1;
-DELETE FROM customers WHERE id = 1;
-```
-
-### 4. DCL (Data Control Language)
-Control access
-```sql
-GRANT SELECT ON customers TO analyst_role;
-REVOKE DELETE ON customers FROM analyst_role;
-```
-
-### 5. TCL (Transaction Control Language)
-Manage transactions
-```sql
-BEGIN TRANSACTION;
-UPDATE accounts SET balance = balance - 100 WHERE id = 1;
-COMMIT;
-```
+**We'll learn each of these step by step in the upcoming lessons!**
 
 ## Key Takeaways
 

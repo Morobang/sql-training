@@ -406,12 +406,10 @@ BEGIN TRANSACTION;
         ShippedDate = GETDATE()
     WHERE OrderID = 12345;
     
-    -- Reduce inventory
+    -- Reduce inventory for product 101 by 2 units
     UPDATE Products
-    SET StockQuantity = StockQuantity - oi.Quantity
-    FROM Products p
-    INNER JOIN OrderItems oi ON p.ProductID = oi.ProductID
-    WHERE oi.OrderID = 12345;
+    SET StockQuantity = StockQuantity - 2
+    WHERE ProductID = 101;
     
     -- Add to shipment log
     INSERT INTO ShipmentLog (OrderID, ShippedDate, Carrier)
