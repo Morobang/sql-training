@@ -1,35 +1,33 @@
 # Intermediate Level - SQL Mastery
 
-**Timeline:** 02:08:03 - 11:56:05  
-**Total Duration:** ~9 hours 48 minutes  
 **Level:** 🟡 Intermediate
 
 ## Overview
 
-Master essential SQL techniques used in real-world applications. Build on beginner fundamentals to write complex queries, combine data from multiple tables, and use powerful built-in functions.
+Master essential SQL techniques used in real-world applications. Build on beginner fundamentals by enhancing the TechStore database, modifying data, and writing complex queries to combine data from multiple tables using powerful built-in functions.
 
 ---
 
 ## 📚 Lessons
 
-| # | Lesson | Duration | Topics Covered |
-|---|--------|----------|----------------|
-| 01 | [Filtering Data](./01-filtering-data/) | ~40 min | Comparison operators, AND/OR/NOT, IN/BETWEEN/LIKE, IS NULL, pattern matching |
-| 02 | [SQL Joins - Basics](./02-sql-joins-basics/) | ~40 min | INNER JOIN, table aliases, multi-table joins, join conditions |
-| 03 | [SQL Joins - Advanced](./03-sql-joins-advanced/) | ~35 min | LEFT/RIGHT/FULL OUTER JOIN, CROSS JOIN, self-joins |
-| 04 | [Set Operators](./04-set-operators/) | ~45 min | UNION, UNION ALL, INTERSECT, EXCEPT |
-| 05 | [String Functions](./05-string-functions/) | ~26 min | UPPER/LOWER, SUBSTRING, CONCAT, LENGTH, TRIM, REPLACE |
-| 06 | [Numeric Functions](./06-numeric-functions/) | ~4 min | ROUND, CEILING, FLOOR, ABS, POWER |
-| 07 | [Date & Time Functions](./07-date-time-functions/) | ~96 min | GETDATE, DATEADD, DATEDIFF, DATE_FORMAT, EXTRACT |
-| 08 | [NULL Functions](./08-null-functions/) | ~69 min | IS NULL, COALESCE, NULLIF, ISNULL, NULL handling |
-| 09 | [CASE Statement](./09-case-statement/) | ~36 min | Simple CASE, searched CASE, CASE in SELECT/WHERE/ORDER BY |
-| 10 | [Aggregate Functions](./10-aggregate-functions/) | ~7 min | COUNT, SUM, AVG, MIN, MAX, GROUP BY |
-| 11 | [Window Functions - Basics](./11-window-functions-basics/) | ~57 min | OVER clause, PARTITION BY, window frames |
-| 12 | [Window Functions - Aggregate](./12-window-aggregate/) | ~66 min | SUM/AVG/COUNT OVER, running totals, moving averages |
-| 13 | [Window Functions - Ranking](./13-window-ranking/) | ~63 min | ROW_NUMBER, RANK, DENSE_RANK, NTILE, top N per group |
-| 14 | [Window Functions - Value](./14-window-value/) | ~44 min | LAG, LEAD, FIRST_VALUE, LAST_VALUE |
+| # | Lesson | Topics Covered |
+|---|--------|----------------|
+| 01 | [Database Enhancement](./01-database-enhancement/) | ALTER TABLE, add columns, enhance TechStore with Products/Sales/Customers |
+| 02 | [Data Modification](./02-data-modification/) | UPDATE, DELETE, TRUNCATE vs DELETE |
+| 03 | [Filtering Data](./03-filtering-data/) | WHERE clause, comparison operators, AND/OR/NOT, IN/BETWEEN/LIKE, IS NULL |
+| 04 | [Sorting Data](./04-sorting-data/) | ORDER BY, ASC/DESC, multi-column sorting |
+| 05 | [SQL Joins - Basics](./05-sql-joins-basics/) | INNER JOIN, table aliases, multi-table joins, join conditions |
+| 06 | [SQL Joins - Advanced](./06-sql-joins-advanced/) | LEFT/RIGHT/FULL OUTER JOIN, CROSS JOIN, self-joins |
+| 07 | [Aggregate Functions](./07-aggregate-functions/) | COUNT, SUM, AVG, MIN, MAX, GROUP BY, HAVING |
+| 08 | [Set Operators](./08-set-operators/) | UNION, UNION ALL, INTERSECT, EXCEPT |
+| 09 | [String Functions](./09-string-functions/) | UPPER/LOWER, SUBSTRING, CONCAT, LENGTH, TRIM, REPLACE |
+| 10 | [Numeric Functions](./10-numeric-functions/) | ROUND, CEILING, FLOOR, ABS, POWER |
+| 11 | [Date & Time Functions](./11-date-time-functions/) | GETDATE, DATEADD, DATEDIFF, DATE_FORMAT, EXTRACT |
+| 12 | [NULL Functions](./12-null-functions/) | IS NULL, COALESCE, NULLIF, ISNULL, NULL handling |
+| 13 | [CASE Expressions](./13-case-expressions/) | Simple CASE, searched CASE, CASE in SELECT/WHERE/ORDER BY |
+| 14 | [Window Functions - Basics](./14-window-functions-basics/) | OVER clause, PARTITION BY, window frames |
 
-**Total:** 14 lessons covering 9 hours 48 minutes of content
+**Total:** 14 lessons building on TechStore database from Beginner level
 
 ---
 
@@ -37,42 +35,48 @@ Master essential SQL techniques used in real-world applications. Build on beginn
 
 By completing the Intermediate level, you will be able to:
 
-1. **Filter Data Effectively**
+1. **Enhance and Modify Databases**
+   - Alter existing tables with new columns
+   - Update existing records with new values
+   - Delete records selectively and safely
+   - Understand TRUNCATE vs DELETE
+
+2. **Filter and Sort Data Effectively**
    - Write complex WHERE conditions with multiple operators
    - Use pattern matching and wildcard searches
    - Handle NULL values properly in queries
+   - Sort results by single or multiple columns
 
-2. **Combine Data from Multiple Tables**
+3. **Combine Data from Multiple Tables**
    - Join 2 or more tables using INNER, LEFT, RIGHT, FULL OUTER joins
    - Understand when to use each join type
    - Write self-joins and cross joins
    - Use table aliases for clarity
 
-3. **Work with Sets**
+4. **Aggregate and Analyze Data**
+   - Calculate totals, averages, counts, min/max
+   - Group data for summary reports
+   - Filter aggregated results with HAVING
+
+5. **Work with Sets**
    - Combine results from multiple queries with UNION
    - Find common records with INTERSECT
    - Find differences with EXCEPT
 
-4. **Transform Data with Functions**
+6. **Transform Data with Functions**
    - Manipulate text with string functions
    - Perform calculations with numeric functions
    - Work with dates and times
    - Handle NULL values safely
 
-5. **Conditional Logic**
-   - Use CASE statements for complex transformations
+7. **Conditional Logic**
+   - Use CASE expressions for complex transformations
    - Implement if-then-else logic in queries
 
-6. **Aggregate and Analyze Data**
-   - Calculate totals, averages, counts, min/max
-   - Group data for summary reports
-   - Filter aggregated results with HAVING
-
-7. **Advanced Analytics with Window Functions**
-   - Calculate running totals and moving averages
-   - Rank rows within partitions
-   - Access previous and next rows
-   - Perform complex analytical queries
+8. **Advanced Analytics with Window Functions**
+   - Use OVER clause and PARTITION BY
+   - Understand window frames and ordering
+   - Perform basic analytical queries
 
 ---
 
@@ -81,7 +85,19 @@ By completing the Intermediate level, you will be able to:
 ```
 ┌─────────────────────┐
 │ BEGINNER Complete  │
-│ (Foundation Ready) │
+│ TechStore Created  │
+└──────────┬──────────┘
+           │
+           ↓
+┌─────────────────────┐
+│ Database Enhancement│
+│ (ALTER TABLE)       │
+└──────────┬──────────┘
+           │
+           ↓
+┌─────────────────────┐
+│ Data Modification   │
+│ (UPDATE/DELETE)     │
 └──────────┬──────────┘
            │
            ↓
@@ -92,9 +108,21 @@ By completing the Intermediate level, you will be able to:
            │
            ↓
 ┌─────────────────────┐
+│ Sorting Data        │
+│ (ORDER BY)          │
+└──────────┬──────────┘
+           │
+           ↓
+┌─────────────────────┐
 │ SQL Joins           │
 │ Basics → Advanced   │
 │ (Multi-table)       │
+└──────────┬──────────┘
+           │
+           ↓
+┌─────────────────────┐
+│ Aggregate Functions │
+│ (GROUP BY/HAVING)   │
 └──────────┬──────────┘
            │
            ↓
@@ -112,21 +140,14 @@ By completing the Intermediate level, you will be able to:
            │
            ↓
 ┌─────────────────────┐
-│ CASE Statement      │
+│ CASE Expressions    │
 │ (Conditional Logic) │
 └──────────┬──────────┘
            │
            ↓
 ┌─────────────────────┐
-│ Aggregate Functions │
-│ (GROUP BY/HAVING)   │
-└──────────┬──────────┘
-           │
-           ↓
-┌─────────────────────┐
 │ Window Functions    │
-│ Basics → Aggregate →│
-│ Ranking → Value     │
+│ (Basics)            │
 └──────────┬──────────┘
            │
            ↓
