@@ -1,7 +1,5 @@
 # Lesson 2: Common Table Expressions (CTEs)
 
-**Timeline:** 14:12:29 - 15:04:29  
-**Duration:** ~52 minutes  
 **Level:** 🔴 Advanced
 
 ## Learning Objectives
@@ -295,4 +293,4 @@ OPTION (MAXRECURSION 366);
 
 ## Next Lesson
 
-Continue to [Lesson 3: Views](../03-views/).
+Continue to [Lesson 3: Views](../03-views/03-views.md).

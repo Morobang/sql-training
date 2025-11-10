@@ -1,7 +1,5 @@
 # Lesson 9: Transactions Deep Dive
 
-**Timeline:** 21:11:03 - 21:43:39  
-**Duration:** ~33 minutes  
 **Level:** 🔴 Advanced
 
 ## Learning Objectives
@@ -433,4 +431,4 @@ INNER JOIN sys.dm_exec_sessions s ON st.session_id = s.session_id;
 
 ## Next Lesson
 
-Continue to [Lesson 10: Query Optimization & Performance Tips](../10-query-optimization/).
+Continue to [Lesson 10: Query Optimization & Performance Tips](../10-query-optimization/10-query-optimization.md).

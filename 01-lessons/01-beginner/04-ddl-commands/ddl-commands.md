@@ -1,7 +1,5 @@
 # Lesson 4: DDL Commands
 
-**Timeline:** 01:32:31 - 01:43:28  
-**Duration:** ~11 minutes  
 **Level:** 🟢 Beginner
 
 ## Learning Objectives
@@ -646,7 +644,7 @@ TRUNCATE TABLE TableName;
 
 ## Next Lesson
 
-**Continue to [Lesson 5: DML Commands](../05-dml-commands/)**  
+**Continue to [Lesson 5: DML Commands](../05-dml-commands/dml-commands.md)**  
 Learn to insert, update, and delete data with INSERT, UPDATE, DELETE.
 
 ---

@@ -1,7 +1,5 @@
 # Lesson 6: Numeric Functions
 
-**Timeline:** 05:13:11 - 05:17:11  
-**Duration:** ~4 minutes  
 **Level:** 🟡 Intermediate
 
 ## Learning Objectives
@@ -63,4 +61,4 @@ WHERE POWER(Price, 2) > 10000;
 
 ## Next Lesson
 
-Continue to [Lesson 7: Date & Time Functions](../07-date-time-functions/).
+Continue to [Lesson 7: Date & Time Functions](../07-date-time-functions/07-date-time-functions.md).

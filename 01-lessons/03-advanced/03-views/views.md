@@ -1,7 +1,5 @@
 # Lesson 3: Views
 
-**Timeline:** 15:04:29 - 15:42:29  
-**Duration:** ~38 minutes  
 **Level:** 🔴 Advanced
 
 ## Learning Objectives
@@ -261,4 +259,4 @@ WHERE c.Region = (SELECT Region FROM Users WHERE UserID = SUSER_SNAME());
 
 ## Next Lesson
 
-Continue to [Lesson 4: Stored Procedures](../04-stored-procedures/).
+Continue to [Lesson 4: Stored Procedures](../04-stored-procedures/04-stored-procedures.md).

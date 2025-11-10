@@ -1,7 +1,5 @@
 # Lesson 8: Execution Plans
 
-**Timeline:** 20:20:31 - 21:11:03  
-**Duration:** ~51 minutes  
 **Level:** 🔴 Advanced
 
 ## Learning Objectives
@@ -393,4 +391,4 @@ ALTER DATABASE YourDB SET QUERY_STORE = ON;
 
 ## Next Lesson
 
-Continue to [Lesson 9: Transactions Deep Dive](../09-transactions/).
+Continue to [Lesson 9: Transactions Deep Dive](../09-transactions/09-transactions.md).

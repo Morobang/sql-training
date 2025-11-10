@@ -1,7 +1,5 @@
 # Lesson 7: Indexes & Performance
 
-**Timeline:** 18:23:42 - 20:20:31  
-**Duration:** ~117 minutes (1h 57m)  
 **Level:** 🔴 Advanced
 
 ## Learning Objectives
@@ -393,4 +391,4 @@ DEALLOCATE index_cursor;
 
 ## Next Lesson
 
-Continue to [Lesson 8: Execution Plans](../08-execution-plans/).
+Continue to [Lesson 8: Execution Plans](../08-execution-plans/08-execution-plans.md).

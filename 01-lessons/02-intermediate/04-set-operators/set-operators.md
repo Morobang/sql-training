@@ -1,7 +1,5 @@
 # Lesson 4: Set Operators
 
-**Timeline:** 04:02:41 - 04:47:05  
-**Duration:** ~45 minutes  
 **Level:** 🟡 Intermediate
 
 ## Learning Objectives
@@ -158,4 +156,4 @@ INNER JOIN OrderDetails od ON p.ProductID = od.ProductID;
 
 ## Next Lesson
 
-Continue to [Lesson 5: String Functions](../05-string-functions/).
+Continue to [Lesson 5: String Functions](../05-string-functions/05-string-functions.md).

@@ -1,7 +1,5 @@
 # Lesson 10: Query Optimization & 30x Performance Tips
 
-**Timeline:** 21:43:39 - 22:24:25  
-**Duration:** ~41 minutes  
 **Level:** 🔴 Advanced
 
 ## Learning Objectives
@@ -440,4 +438,4 @@ Before deploying a query, check:
 
 ## Next Lesson
 
-Continue to [Lesson 11: Partitioning & Sharding](../11-partitioning/).
+Continue to [Lesson 11: Partitioning & Sharding](../11-partitioning/11-partitioning.md).

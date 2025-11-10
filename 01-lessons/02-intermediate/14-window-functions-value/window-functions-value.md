@@ -1,7 +1,5 @@
 # Lesson 14: Window Functions - Value Functions
 
-**Timeline:** 12:13:17 - 13:27:29  
-**Duration:** ~74 minutes  
 **Level:** 🟡 Intermediate
 
 ## Learning Objectives

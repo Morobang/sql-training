@@ -1,7 +1,5 @@
 # Lesson 3: Query Data (SELECT)
 
-**Timeline:** 22:33 - 01:32:31  
-**Duration:** ~58 minutes  
 **Level:** 🟢 Beginner
 
 ## Learning Objectives
@@ -844,7 +842,7 @@ ORDER BY Country, City      -- Multiple columns
 
 ## Next Lesson
 
-**Continue to [Lesson 4: DDL Commands](../04-ddl-commands/)**  
+**Continue to [Lesson 4: DDL Commands](../04-ddl-commands/ddl-commands.md)**  
 Learn to create and modify database structures with CREATE, ALTER, and DROP.
 
 ---

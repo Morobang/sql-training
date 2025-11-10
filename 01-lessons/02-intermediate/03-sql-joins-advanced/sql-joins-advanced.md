@@ -1,7 +1,5 @@
 # Lesson 3: SQL Joins - Advanced
 
-**Timeline:** 03:27:29 - 04:02:41  
-**Duration:** ~35 minutes  
 **Level:** 🟡 Intermediate
 
 ## Learning Objectives
@@ -177,4 +175,4 @@ WHERE o.OrderDate >= '2024-01-01' OR o.OrderID IS NULL; -- different semantics
 
 ## Next Lesson
 
-Continue to [Lesson 4: Set Operators](../04-set-operators/).
+Continue to [Lesson 4: Set Operators](../04-set-operators/04-set-operators.md).

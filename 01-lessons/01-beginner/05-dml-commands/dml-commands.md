@@ -1,7 +1,5 @@
 # Lesson 5: DML Commands
 
-**Timeline:** 01:43:28 - 02:07:38  
-**Duration:** ~24 minutes  
 **Level:** 🟢 Beginner
 
 ## Learning Objectives

@@ -1,7 +1,5 @@
 # Lesson 8: NULL Handling & Functions
 
-**Timeline:** 06:53:11 - 07:24:47  
-**Duration:** ~32 minutes  
 **Level:** 🟡 Intermediate
 
 ## Learning Objectives
@@ -184,4 +182,4 @@ FROM CategoryStats;
 
 ## Next Lesson
 
-Continue to [Lesson 9: CASE Expressions](../09-case-expressions/).
+Continue to [Lesson 9: CASE Expressions](../09-case-expressions/09-case-expressions.md).

@@ -1,7 +1,5 @@
 # Lesson 5: String Functions
 
-**Timeline:** 04:47:05 - 05:13:11  
-**Duration:** ~26 minutes  
 **Level:** 🟡 Intermediate
 
 ## Learning Objectives
@@ -107,4 +105,4 @@ WHERE Email LIKE '%@%';
 
 ## Next Lesson
 
-Continue to [Lesson 6: Numeric Functions](../06-numeric-functions/).
+Continue to [Lesson 6: Numeric Functions](../06-numeric-functions/06-numeric-functions.md).

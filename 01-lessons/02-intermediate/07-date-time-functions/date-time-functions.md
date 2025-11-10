@@ -1,7 +1,5 @@
 # Lesson 7: Date & Time Functions
 
-**Timeline:** 05:17:11 - 06:53:11  
-**Duration:** ~96 minutes  
 **Level:** 🟡 Intermediate
 
 ## Learning Objectives
@@ -122,4 +120,4 @@ ORDER BY Yr DESC, Mth DESC;
 
 ## Next Lesson
 
-Continue to [Lesson 8: NULL Functions](../08-null-functions/).
+Continue to [Lesson 8: NULL Functions](../08-null-functions/08-null-functions.md).

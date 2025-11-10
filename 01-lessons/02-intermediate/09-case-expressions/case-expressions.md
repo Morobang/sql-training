@@ -1,7 +1,5 @@
 # Lesson 9: CASE Expressions
 
-**Timeline:** 07:24:47 - 08:02:29  
-**Duration:** ~38 minutes  
 **Level:** 🟡 Intermediate
 
 ## Learning Objectives
@@ -206,4 +204,4 @@ FROM CustomerSpending;
 
 ## Next Lesson
 
-Continue to [Lesson 10: Aggregate Functions & GROUP BY](../10-aggregate-functions/).
+Continue to [Lesson 10: Aggregate Functions & GROUP BY](../10-aggregate-functions/10-aggregate-functions.md).

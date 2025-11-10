@@ -1,7 +1,5 @@
 # Lesson 2: Setup Your Environment
 
-**Timeline:** 07:38 - 22:33  
-**Duration:** ~12 minutes  
 **Level:** 🟢 Beginner
 
 ## Learning Objectives
@@ -485,7 +483,7 @@ SELECT @@VERSION;
 
 ## Next Lesson
 
-**Continue to [Lesson 3: Query Data (SELECT)](../03-query-data/)**  
+**Continue to [Lesson 3: Query Data (SELECT)](../03-query-data/query-data.md)**  
 Learn to write SELECT queries to retrieve data from databases.
 
 ---

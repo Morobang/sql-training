@@ -1,7 +1,5 @@
 # Lesson 11: Window Functions - Basics
 
-**Timeline:** 09:17:05 - 10:13:41  
-**Duration:** ~57 minutes  
 **Level:** 🟡 Intermediate
 
 ## Learning Objectives
@@ -215,4 +213,4 @@ FROM ProductAvg;
 
 ## Next Lesson
 
-Continue to [Lesson 12: Window Functions - Aggregates & Frames](../12-window-functions-aggregates/).
+Continue to [Lesson 12: Window Functions - Aggregates & Frames](../12-window-functions-aggregates/12-window-functions-aggregates.md).

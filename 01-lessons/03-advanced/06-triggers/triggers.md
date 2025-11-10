@@ -1,7 +1,5 @@
 # Lesson 6: Triggers
 
-**Timeline:** 17:29:29 - 18:17:29  
-**Duration:** ~48 minutes  
 **Level:** 🔴 Advanced
 
 ## Learning Objectives
@@ -370,4 +368,4 @@ ALTER TABLE Products ENABLE TRIGGER ALL;
 
 ## Next Lesson
 
-Continue to [Lesson 7: Indexes & Performance](../07-indexes-performance/).
+Continue to [Lesson 7: Indexes & Performance](../07-indexes-performance/07-indexes-performance.md).

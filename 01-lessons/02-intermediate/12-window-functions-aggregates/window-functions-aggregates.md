@@ -1,7 +1,5 @@
 # Lesson 12: Window Functions - Aggregates & Frames
 
-**Timeline:** 10:13:41 - 11:05:35  
-**Duration:** ~52 minutes  
 **Level:** 🟡 Intermediate
 
 ## Learning Objectives
@@ -227,4 +225,4 @@ ORDER BY Revenue DESC;
 
 ## Next Lesson
 
-Continue to [Lesson 13: Window Functions - Ranking](../13-window-functions-ranking/).
+Continue to [Lesson 13: Window Functions - Ranking](../13-window-functions-ranking/13-window-functions-ranking.md).

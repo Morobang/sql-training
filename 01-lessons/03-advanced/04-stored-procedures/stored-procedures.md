@@ -1,7 +1,5 @@
 # Lesson 4: Stored Procedures
 
-**Timeline:** 15:42:29 - 16:47:29  
-**Duration:** ~65 minutes  
 **Level:** 🔴 Advanced
 
 ## Learning Objectives
@@ -374,4 +372,4 @@ END;
 
 ## Next Lesson
 
-Continue to [Lesson 5: Functions (UDFs)](../05-functions/).
+Continue to [Lesson 5: Functions (UDFs)](../05-functions/05-functions.md).

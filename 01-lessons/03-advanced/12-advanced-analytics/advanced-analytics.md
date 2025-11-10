@@ -1,7 +1,5 @@
 # Lesson 12: Advanced Analytics & AI with SQL
 
-**Timeline:** 22:24:25 - 23:11:46  
-**Duration:** ~47 minutes  
 **Level:** 🔴 Advanced
 
 ## Learning Objectives

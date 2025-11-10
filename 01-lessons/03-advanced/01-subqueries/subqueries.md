@@ -1,7 +1,5 @@
 # Lesson 1: Subqueries
 
-**Timeline:** 13:27:29 - 14:12:29  
-**Duration:** ~45 minutes  
 **Level:** 🔴 Advanced
 
 ## Learning Objectives
@@ -273,4 +271,4 @@ WHERE p.Price > AvgPrices.AvgPrice;
 
 ## Next Lesson
 
-Continue to [Lesson 2: Common Table Expressions (CTEs)](../02-ctes/).
+Continue to [Lesson 2: Common Table Expressions (CTEs)](../02-ctes/02-ctes.md).

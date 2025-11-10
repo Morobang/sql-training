@@ -1,7 +1,5 @@
 # Lesson 1: Introduction to SQL
 
-**Timeline:** 00:00 - 07:38  
-**Duration:** ~15 minutes  
 **Level:** 🟢 Beginner
 
 ## Learning Objectives
@@ -162,7 +160,6 @@ Industries:
 
 ## SQL History (Brief)
 
-**Timeline:**
 ```
 1970: Edgar Codd publishes relational model paper
 1974: IBM develops SEQUEL (later renamed SQL)
@@ -307,7 +304,7 @@ COMMIT;
 
 ## Next Lesson
 
-**Continue to [Lesson 2: Setup Your Environment](../02-setup-environment/)**  
+**Continue to [Lesson 2: Setup Your Environment](../02-setup-environment/setup-environment.md)**  
 Learn how to install and configure your SQL development environment.
 
 ---

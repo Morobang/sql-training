@@ -1,7 +1,5 @@
 # Lesson 2: SQL Joins - Basics
 
-**Timeline:** 02:47:57 - 03:27:29  
-**Duration:** ~40 minutes  
 **Level:** 🟡 Intermediate
 
 ## Learning Objectives
@@ -683,7 +681,7 @@ GROUP BY c.CategoryName;
 
 ## Next Lesson
 
-**Continue to [Lesson 3: SQL Joins - Advanced](../03-sql-joins-advanced/)**  
+**Continue to [Lesson 3: SQL Joins - Advanced](../03-sql-joins-advanced/03-sql-joins-advanced.md)**  
 Learn about LEFT, RIGHT, FULL OUTER, CROSS, and SELF joins.
 
 ---

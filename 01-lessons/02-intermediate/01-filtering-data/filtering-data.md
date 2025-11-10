@@ -1,7 +1,5 @@
 # Lesson 1: Filtering Data
 
-**Timeline:** 02:08:03 - 02:47:57  
-**Duration:** ~40 minutes  
 **Level:** 🟡 Intermediate
 
 ## Learning Objectives
@@ -819,7 +817,7 @@ WHERE (Price > 500 AND CategoryID = 1)
 
 ## Next Lesson
 
-**Continue to [Lesson 2: SQL Joins - Basics](../02-sql-joins-basics/)**  
+**Continue to [Lesson 2: SQL Joins - Basics](../02-sql-joins-basics/02-sql-joins-basics.md)**  
 Learn to combine data from multiple tables using INNER JOIN.
 
 ---

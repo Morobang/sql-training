@@ -1,7 +1,5 @@
 # Lesson 5: User-Defined Functions (UDFs)
 
-**Timeline:** 16:47:29 - 17:29:29  
-**Duration:** ~42 minutes  
 **Level:** 🔴 Advanced
 
 ## Learning Objectives
@@ -327,4 +325,4 @@ DROP FUNCTION dbo.fn_CalculateTax;
 
 ## Next Lesson
 
-Continue to [Lesson 6: Triggers](../06-triggers/).
+Continue to [Lesson 6: Triggers](../06-triggers/06-triggers.md).

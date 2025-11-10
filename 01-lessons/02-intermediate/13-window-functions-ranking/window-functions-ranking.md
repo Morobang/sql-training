@@ -1,7 +1,5 @@
 # Lesson 13: Window Functions - Ranking & Pagination
 
-**Timeline:** 11:05:35 - 12:13:17  
-**Duration:** ~68 minutes  
 **Level:** 🟡 Intermediate
 
 ## Learning Objectives
@@ -259,4 +257,4 @@ WHERE RowNum = 1;
 
 ## Next Lesson
 
-Continue to [Lesson 14: Window Functions - Value Functions](../14-window-functions-value/).
+Continue to [Lesson 14: Window Functions - Value Functions](../14-window-functions-value/14-window-functions-value.md).

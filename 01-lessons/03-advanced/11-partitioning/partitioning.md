@@ -1,7 +1,5 @@
 # Lesson 11: Partitioning & Sharding
 
-**Timeline:** 21:22:29 - 21:43:39  
-**Duration:** ~21 minutes  
 **Level:** 🔴 Advanced
 
 ## Learning Objectives
@@ -391,4 +389,4 @@ WHERE SaleDate >= '2024-01-01' AND SaleDate < '2025-01-01';
 
 ## Next Lesson
 
-Continue to [Lesson 12: Advanced Analytics & AI with SQL](../12-advanced-analytics/).
+Continue to [Lesson 12: Advanced Analytics & AI with SQL](../12-advanced-analytics/12-advanced-analytics.md).

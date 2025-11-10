@@ -1,7 +1,5 @@
 # Lesson 10: Aggregate Functions & GROUP BY
 
-**Timeline:** 08:02:29 - 09:17:05  
-**Duration:** ~75 minutes  
 **Level:** 🟡 Intermediate
 
 ## Learning Objectives
@@ -253,4 +251,4 @@ HAVING AVG(Price) > 50;
 
 ## Next Lesson
 
-Continue to [Lesson 11: Window Functions - Basics](../11-window-functions-basics/).
+Continue to [Lesson 11: Window Functions - Basics](../11-window-functions-basics/11-window-functions-basics.md).
