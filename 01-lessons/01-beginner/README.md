@@ -1,234 +1,195 @@
-# 🟢 Beginner SQL - Hands-On Practice
+# 🟢 Beginner SQL - TechStore Database
 
-Welcome to Beginner SQL! This folder contains **hands-on SQL files** where you'll build a complete database from scratch.
+Welcome to Beginner SQL! Learn SQL by building a **TechStore** database from scratch.
 
 ## 📁 What's In This Folder
 
-### ⭐ SQL Practice Files (Main Learning Path)
+### 🎯 Simple, Progressive Learning Path
 ```
-01-setup-database.sql      ← START HERE! Creates CompanyDB
-03-select-queries.sql      ← Practice SELECT queries (31 examples)
-04-create-tables.sql       ← Create tables with DDL
-05-modify-data.sql         ← Insert/Update/Delete data
+01-create-database/       ← START HERE! Create TechStore
+02-create-first-table/    ← Make your first Products table
+03-insert-data/           ← Add products to your store
+04-query-data/            ← View and filter products
+05-add-more-tables/       ← Add Customers and Orders
+06-table-relationships/   ← Connect tables with JOIN
 ```
 
-### 📚 Markdown Lessons (Read First, Then Practice)
+### 📚 Old Lessons (To Be Updated)
 ```
-01-intro-to-sql/          ← What is SQL?
-02-setup-environment/     ← Install SQL Server
-03-query-data/            ← SELECT explained
-04-ddl-commands/          ← CREATE/ALTER/DROP explained
-05-dml-commands/          ← INSERT/UPDATE/DELETE explained
+01-intro-to-sql/          ← Concepts (being updated)
+02-setup-environment/     ← Installation guide
+03-query-data/            ← Query concepts
+04-ddl-commands/          ← DDL concepts
+05-dml-commands/          ← DML concepts
 ```
 
 ---
 
-## 🚀 Quick Start (3 Steps)
+## 🚀 Quick Start Guide
 
-### 1. Setup (15 minutes)
-```
-1. Read: 02-setup-environment/setup-environment.md
-2. Install SQL Server + SSMS (or Azure Data Studio)
-3. Connect to your local server
-```
+### Step 1: Install SQL Server
+1. Read: `02-setup-environment/setup-environment.md`
+2. Install SQL Server + SSMS
+3. Connect to your server
 
-### 2. Create Database (5 minutes)
+### Step 2: Follow The Lessons In Order
+Each folder builds on the previous one!
+
+---
+
+## 📖 Learning Path (Follow In Order!)
+
+### **Lesson 1: Create Database** (5 min)
+📁 `01-create-database/`
+
 ```sql
--- Open: 01-setup-database.sql in SSMS
--- Click: Execute (F5)
--- Result: CompanyDB created with Employees table!
+CREATE DATABASE TechStore;  -- That's it!
+USE TechStore;              -- Now use it
 ```
 
-### 3. Start Learning!
-```
-Follow the learning path below →
-```
+**What you'll learn:**
+- How to create a database
+- How to switch to using it
 
 ---
 
-## 📖 Learning Path
+### **Lesson 2: Create First Table** (10 min)
+📁 `02-create-first-table/`
 
-### **Lesson 1-2: Introduction & Setup**
-**Read:** `01-intro-to-sql/`, `02-setup-environment/`  
-**Run:** `01-setup-database.sql`
+```sql
+CREATE TABLE Products (
+    ProductID INT,
+    ProductName VARCHAR(100),
+    Price DECIMAL(10,2)
+);
+```
 
-**You'll Learn:**
-- What is SQL?
-- Install SQL Server
-- Create CompanyDB database
-- Create Employees table with 10 rows
-
-**Time:** 30 min
+**What you'll learn:**
+- CREATE TABLE syntax
+- Simple data types
+- View table structure
 
 ---
 
-### **Lesson 3: Query Data (SELECT)** ⭐ MOST IMPORTANT
-**Read:** `03-query-data/query-data.md`  
-**Run:** `03-select-queries.sql`
+### **Lesson 3: Insert Data** (15 min)
+📁 `03-insert-data/`
 
-**You'll Learn:**
-- SELECT * and specific columns
+```sql
+INSERT INTO Products VALUES (1, 'Wireless Mouse', 29.99);
+```
+
+**What you'll learn:**
+- Insert single record
+- Insert multiple records
+
+---
+
+### **Lesson 4: Query Data** (30 min)
+📁 `04-query-data/`
+
+```sql
+SELECT * FROM Products;              -- See all
+SELECT ProductName FROM Products;    -- Specific columns
+SELECT * FROM Products WHERE Price < 50;  -- Filter
+SELECT * FROM Products ORDER BY Price;    -- Sort
+```
+
+**What you'll learn:**
+- SELECT basics
 - WHERE filtering
-- Comparison operators (=, >, <, !=)
-- LIKE pattern matching
-- IN and BETWEEN
-- AND/OR/NOT logic
 - ORDER BY sorting
-- TOP to limit results
-
-**Practice:** 31 examples + 8 exercises  
-**Time:** 1-2 hours
 
 ---
 
-### **Lesson 4: DDL Commands**
-**Read:** `04-ddl-commands/ddl-commands.md`  
-**Run:** `04-create-tables.sql`
+### **Lesson 5: Add More Tables** (20 min)
+📁 `05-add-more-tables/`
 
-**You'll Learn:**
-- CREATE TABLE
-- Data types (INT, NVARCHAR, DECIMAL, DATE)
-- Primary keys & IDENTITY
-- Constraints (NOT NULL, CHECK, DEFAULT)
-- ALTER TABLE
-- DROP and TRUNCATE
-
-**Creates:** Departments, Products, Customers tables  
-**Time:** 1 hour
-
----
-
-### **Lesson 5: DML Commands**
-**Read:** `05-dml-commands/dml-commands.md`  
-**Run:** `05-modify-data.sql`
-
-**You'll Learn:**
-- INSERT single & multiple rows
-- UPDATE with WHERE
-- DELETE safely
-- BEGIN TRANSACTION
-- COMMIT and ROLLBACK
-
-**Practice:** 16 examples + 6 exercises  
-**Time:** 1-2 hours
-
----
-
-## 💡 The Incremental Database Approach
-
-**Key Concept:** We build ONE database that grows across all lessons!
-
-```
-01-setup-database.sql  →  CompanyDB
-                           └─ Employees (10 rows)
-
-04-create-tables.sql   →  CompanyDB  
-                           ├─ Employees
-                           ├─ Departments (new!)
-                           ├─ Products (new!)
-                           └─ Customers (new!)
-
-05-modify-data.sql     →  CompanyDB (with more data)
-                           ├─ Employees (14+ rows)
-                           ├─ Departments
-                           ├─ Products (10+ rows)
-                           └─ Customers (8+ rows)
-```
-
-**This means:**
-- ✅ Run `01-setup-database.sql` ONCE
-- ✅ Each file builds on previous ones
-- ✅ Don't create/drop database in every file
-- ❌ Don't skip files - they depend on each other!
-
----
-
-## ⚠️ How to Use SQL Files
-
-### ❌ DON'T Do This:
-```
-1. Open SQL file
-2. Click Execute on entire file
-3. Get overwhelmed by 100 results
-```
-
-### ✅ DO This:
-```
-1. Open SQL file
-2. Read the comments
-3. Highlight ONE example (Ctrl+Shift+End)
-4. Press F5 to run just that section
-5. Read the results
-6. Understand what happened
-7. Move to next example
-```
-
-**Example:**
 ```sql
--- Highlight just these 3 lines:
-SELECT FirstName, LastName, Department
-FROM Employees
-WHERE Department = 'IT';
-
--- Press F5 → See results → Understand → Continue
+CREATE TABLE Customers (...);
+CREATE TABLE Orders (...);
 ```
+
+**What you'll learn:**
+- Create Customers table
+- Create Orders table
+- Connect them with IDs
+
+---
+
+### **Lesson 6: Table Relationships** (30 min)
+📁 `06-table-relationships/`
+
+```sql
+SELECT Customers.FirstName, Orders.OrderDate
+FROM Customers
+JOIN Orders ON Customers.CustomerID = Orders.CustomerID;
+```
+
+**What you'll learn:**
+- JOIN two tables
+- JOIN three tables
+- See complete order information
+
+---
+
+## 💡 How These Lessons Work
+
+### ✅ Simple Approach
+- **One concept per file**
+- **No complex IF statements**
+- **No system queries**
+- **Just pure SQL basics**
+
+### 🎯 Run Files In Order
+```
+Lesson 1 → Lesson 2 → Lesson 3 → etc.
+```
+Each builds on the previous one!
+
+### 📝 Each File Is Short
+- 5-15 lines of actual SQL
+- Easy to understand
+- Quick to run
 
 ---
 
 ## ✅ Completion Checklist
 
-- [ ] Install SQL Server
-- [ ] Install SSMS or Azure Data Studio
-- [ ] Run `01-setup-database.sql` successfully
-- [ ] Complete all 31 examples in `03-select-queries.sql`
-- [ ] Do the 8 SELECT practice exercises
-- [ ] Complete `04-create-tables.sql`
-- [ ] Create your Projects table (exercise)
-- [ ] Complete `05-modify-data.sql`
-- [ ] Do all 6 DML exercises
-- [ ] Experiment with your own queries!
+- [ ] Create TechStore database
+- [ ] Create Products table
+- [ ] Insert 5 products
+- [ ] Query all products
+- [ ] Filter products by price
+- [ ] Sort products
+- [ ] Create Customers table
+- [ ] Create Orders table
+- [ ] Insert customer data
+- [ ] Insert order data
+- [ ] JOIN Customers and Orders
+- [ ] JOIN all three tables
 
 ---
 
 ## 🎯 After Completing Beginner
 
-### You'll Be Able To:
-✅ Write SELECT queries  
-✅ Filter data with WHERE  
-✅ Sort with ORDER BY  
-✅ Create tables  
-✅ Insert data  
-✅ Update data  
-✅ Delete data  
-✅ Use transactions  
+### You'll Know:
+✅ CREATE DATABASE  
+✅ CREATE TABLE  
+✅ INSERT data  
+✅ SELECT queries  
+✅ WHERE filtering  
+✅ ORDER BY sorting  
+✅ JOIN tables  
 
 ### Next Steps:
-1. **Practice more** - Redo the exercises
-2. **Explore** - `06-additional-topics/` for deep dives  
-3. **Level up** - Move to `../02-intermediate/` when ready!
+📁 Move to `../02-intermediate/` for:
+- Primary Keys
+- Foreign Keys
+- Constraints
+- Advanced JOINs
+- Subqueries
+- Functions
 
 ---
 
-## 💬 FAQ
-
-**Q: Can I skip the markdown files?**  
-A: No! Read markdown first for concepts, then practice with SQL.
-
-**Q: Do files need to run in order?**  
-A: YES! Each builds on the previous.
-
-**Q: What if I get an error?**  
-A: Common fixes:
-- Run `01-setup-database.sql` first
-- Check you're connected to CompanyDB
-- Check for typos
-
-**Q: Can I modify the files?**  
-A: Yes! That's how you learn. Experiment!
-
-**Q: How long does this take?**  
-A: 1-2 weeks with 30-60 min daily practice
-
----
-
-**Ready? Start with** `01-setup-database.sql` **and let's build something! 🚀**
+**Ready? Open** `01-create-database/01-create-database.sql` **and let's start! 🚀**
