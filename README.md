@@ -56,120 +56,80 @@ Set up your complete SQL learning environment
 
 ---
 
-### [01 - Lessons](./01-lessons/)
-Comprehensive lessons organized by topic and difficulty
+### [01 - Lessons](./01-lessons/) - New 3-Level Progressive Learning Path
 
-#### 📘 Chapter 1: Background (1-2 hours)
-- Introduction to databases and RDBMS
-- Understanding the relational model
-- SQL terminology and statement classes
-- What is SQL Server and how it works
+## 🟢 [BEGINNER LEVEL](./01-lessons/01-beginner/) 
+**Duration:** ~1 hour 44 minutes | **5 Lessons**
 
-#### 📗 Chapter 2: Creating Databases (3-4 hours)
-- Data types (character, numeric, temporal)
-- Table design and creation
-- Inserting, updating, and deleting data
-- Working with the Sakila sample database
+Master the fundamentals of SQL and database operations.
 
-**✨ NEW**: Includes practical `.sql` scripts you can run! See [HOW-TO-USE-SCRIPTS.md](./01-lessons/02-creating-database/HOW-TO-USE-SCRIPTS.md)
+| # | Lesson | Duration | What You'll Learn |
+|---|--------|----------|-------------------|
+| 1 | [Intro to SQL](./01-lessons/01-beginner/01-intro-to-sql/) | 15 min | What SQL is, why databases matter, RDBMS concepts |
+| 2 | [Setup Environment](./01-lessons/01-beginner/02-setup-environment/) | 12 min | SQL Server setup, tools (SSMS/Azure Data Studio) |
+| 3 | [Query Data](./01-lessons/01-beginner/03-query-data/) | 58 min | SELECT, WHERE, ORDER BY, basic filtering |
+| 4 | [DDL Commands](./01-lessons/01-beginner/04-ddl-commands/) | 11 min | CREATE, ALTER, DROP tables and databases |
+| 5 | [DML Commands](./01-lessons/01-beginner/05-dml-commands/) | 24 min | INSERT, UPDATE, DELETE, basic transactions |
 
-#### 📙 Chapter 3: Query Primer (2-3 hours)
-- Query mechanics and execution
-- SELECT, FROM, WHERE clauses
-- Filtering and sorting data
-- Basic aggregate functions
+**After completing**: You'll be able to create databases, tables, and perform CRUD operations.
 
-#### 📕 Chapter 4: Filtering (2-3 hours)
-- Building complex conditions
-- Range and membership conditions
-- Pattern matching with LIKE
-- Handling NULL values
+---
 
-#### 📓 Chapter 5: Querying Multiple Tables (3-4 hours)
-- Understanding joins (INNER, OUTER, CROSS)
-- Cartesian products and join conditions
-- Self-joins and multi-table queries
-- Join performance considerations
+## 🟡 [INTERMEDIATE LEVEL](./01-lessons/02-intermediate/)
+**Duration:** ~10 hours | **14 Lessons**
 
-#### 📔 Chapter 6: Working with Sets (2-3 hours)
-- Set operations (UNION, INTERSECT, EXCEPT)
-- Set theory fundamentals
-- Combining result sets
-- Practical set applications
+Advanced querying, functions, and analytical techniques.
 
-#### 📒 Chapter 7: Data Generation & Manipulation (3-4 hours)
-- String functions and manipulation
-- Numeric operations
-- Date and time functions
-- Type conversions and casting
+| # | Lesson | Duration | What You'll Learn |
+|---|--------|----------|-------------------|
+| 1 | [Filtering Data](./01-lessons/02-intermediate/01-filtering-data/) | 40 min | Advanced WHERE, BETWEEN, IN, LIKE, NULL handling |
+| 2 | [SQL Joins - Basics](./01-lessons/02-intermediate/02-sql-joins-basics/) | 40 min | INNER JOIN, table aliases, multi-table joins |
+| 3 | [SQL Joins - Advanced](./01-lessons/02-intermediate/03-sql-joins-advanced/) | 35 min | LEFT/RIGHT/FULL/CROSS, SELF JOIN, APPLY |
+| 4 | [Set Operators](./01-lessons/02-intermediate/04-set-operators/) | 45 min | UNION, INTERSECT, EXCEPT |
+| 5 | [String Functions](./01-lessons/02-intermediate/05-string-functions/) | 26 min | UPPER, LOWER, TRIM, SUBSTRING, CONCAT |
+| 6 | [Numeric Functions](./01-lessons/02-intermediate/06-numeric-functions/) | 4 min | ROUND, CEILING, FLOOR, ABS, POWER |
+| 7 | [Date & Time Functions](./01-lessons/02-intermediate/07-date-time-functions/) | 96 min | GETDATE, DATEADD, DATEDIFF, formatting |
+| 8 | [NULL Functions](./01-lessons/02-intermediate/08-null-functions/) | 32 min | COALESCE, ISNULL, NULLIF, three-valued logic |
+| 9 | [CASE Expressions](./01-lessons/02-intermediate/09-case-expressions/) | 38 min | Searched/Simple CASE, conditional logic |
+| 10 | [Aggregate Functions](./01-lessons/02-intermediate/10-aggregate-functions/) | 75 min | COUNT, SUM, AVG, GROUP BY, HAVING |
+| 11 | [Window Functions - Basics](./01-lessons/02-intermediate/11-window-functions-basics/) | 57 min | OVER(), PARTITION BY, running totals |
+| 12 | [Window Functions - Aggregates](./01-lessons/02-intermediate/12-window-functions-aggregates/) | 52 min | Window frames, moving averages, ROWS vs RANGE |
+| 13 | [Window Functions - Ranking](./01-lessons/02-intermediate/13-window-functions-ranking/) | 68 min | ROW_NUMBER, RANK, DENSE_RANK, NTILE |
+| 14 | [Window Functions - Value](./01-lessons/02-intermediate/14-window-functions-value/) | 74 min | LAG, LEAD, FIRST_VALUE, LAST_VALUE |
 
-#### 📗 Chapter 8: Grouping & Aggregates (3-4 hours)
-- GROUP BY fundamentals
-- Aggregate functions (COUNT, SUM, AVG, MIN, MAX)
-- HAVING clause filtering
-- Common grouping patterns
+**After completing**: You'll master complex queries, analytics, and data transformations.
 
-#### 📘 Chapter 9: Subqueries (3-4 hours)
-- Scalar and multi-row subqueries
-- Correlated subqueries
-- EXISTS and IN operators
-- Subquery optimization
+---
 
-#### 📙 Chapter 10: Joins Revisited (2-3 hours)
-- Advanced join techniques
-- OUTER joins and edge cases
-- Cross joins and self-joins
-- Join optimization strategies
+## � [ADVANCED LEVEL](./01-lessons/03-advanced/)
+**Duration:** ~10 hours | **12 Lessons**
 
-#### 📕 Chapter 11: Conditional Logic (2-3 hours)
-- CASE expressions
-- IIF and CHOOSE functions
-- Conditional aggregations
-- Pivoting and unpivoting data
+Professional database development, optimization, and administration.
 
-#### 📓 Chapter 12: Transactions (2-3 hours)
-- ACID properties
-- Transaction control (BEGIN, COMMIT, ROLLBACK)
-- Isolation levels
-- Locking and concurrency
+| # | Lesson | Duration | What You'll Learn |
+|---|--------|----------|-------------------|
+| 1 | [Subqueries](./01-lessons/03-advanced/01-subqueries/) | 45 min | Scalar, row, table subqueries; EXISTS, correlated |
+| 2 | [CTEs](./01-lessons/03-advanced/02-ctes/) | 52 min | Common Table Expressions, recursive CTEs |
+| 3 | [Views](./01-lessons/03-advanced/03-views/) | 38 min | Creating views, indexed views, security |
+| 4 | [Stored Procedures](./01-lessons/03-advanced/04-stored-procedures/) | 65 min | Parameters, error handling, business logic |
+| 5 | [Functions (UDFs)](./01-lessons/03-advanced/05-functions/) | 42 min | Scalar, inline, multi-statement functions |
+| 6 | [Triggers](./01-lessons/03-advanced/06-triggers/) | 48 min | DML/DDL triggers, audit logging |
+| 7 | [Indexes & Performance](./01-lessons/03-advanced/07-indexes-performance/) | 72 min | Clustered/non-clustered indexes, design strategies |
+| 8 | [Execution Plans](./01-lessons/03-advanced/08-execution-plans/) | 58 min | Reading plans, query tuning |
+| 9 | [Transactions Deep Dive](./01-lessons/03-advanced/09-transactions/) | 55 min | ACID, isolation levels, deadlock prevention |
+| 10 | [Query Optimization](./01-lessons/03-advanced/10-query-optimization/) | 68 min | Performance tuning, hints, statistics |
+| 11 | [Partitioning & Sharding](./01-lessons/03-advanced/11-partitioning/) | 50 min | Table partitioning, scalability patterns |
+| 12 | [Advanced Analytics](./01-lessons/03-advanced/12-advanced-analytics/) | 47 min | Modern SQL, BI integration, big data |
 
-#### 📔 Chapter 13: Indexes & Constraints (3-4 hours)
-- Index types and creation
-- Primary and foreign keys
-- Check and unique constraints
-- Performance tuning with indexes
+**After completing**: You'll be ready for production database development and DBA roles.
 
-#### 📒 Chapter 14: Views (2-3 hours)
-- Creating and using views
-- Updatable views
-- Indexed views
-- View security and benefits
+---
 
-#### 📗 Chapter 15: Metadata (2 hours)
-- System catalogs and schemas
-- Information schema views
-- Dynamic SQL
-- Database introspection
+### � [Original 18-Chapter Archive](./01-lessons/00-original-chapters/)
 
-#### 📘 Chapter 16: Analytic Functions (3-4 hours)
-- Window functions (ROW_NUMBER, RANK, DENSE_RANK)
-- Aggregate window functions
-- OVER clause and partitioning
-- Running totals and moving averages
+The original sequential 18-chapter structure is preserved in the archive folder for reference. See [CONTENT-MIGRATION-MAP.md](./CONTENT-MIGRATION-MAP.md) for how content was reorganized into the new 3-level structure.
 
-#### 📙 Chapter 17: Large Databases (2-3 hours)
-- Partitioning strategies
-- Data archiving
-- Performance at scale
-- Best practices for large datasets
-
-#### 📕 Chapter 18: SQL & Big Data (2-3 hours)
-- SQL in modern data ecosystems
-- Cloud databases (Azure SQL)
-- SQL with Hadoop and Spark
-- NoSQL vs SQL considerations
-
-**Total Lesson Time:** 40-50 hours
+---
 
 ---
 
