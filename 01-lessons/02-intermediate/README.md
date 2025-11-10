@@ -161,11 +161,30 @@ By completing the Intermediate level, you will be able to:
 
 ## 💡 Key Concepts
 
+### Database Enhancement
+- **ALTER TABLE:** Add columns to existing tables
+- **TechStore Evolution:** Build on beginner database
+- **Products Table:** Enhanced with Category, Cost, StockQuantity, IsActive
+- **Sales Table:** Track customer purchases with foreign keys
+- **Customers Table:** Add location and purchase tracking
+
+### Data Modification
+- **UPDATE:** Change existing records
+- **DELETE:** Remove specific rows
+- **TRUNCATE:** Fast deletion of all rows (resets identity)
+- **Safety:** Always use WHERE clause!
+
 ### Filtering Mastery
 - **Comparison Operators:** =, <>, >, <, >=, <=
 - **Logical Operators:** AND, OR, NOT
 - **Special Operators:** IN, BETWEEN, LIKE, IS NULL
 - **Pattern Matching:** % (any characters), _ (single character)
+
+### Sorting Data
+- **ORDER BY:** Control result order
+- **ASC:** Ascending (default) - low to high
+- **DESC:** Descending - high to low
+- **Multi-column:** Sort by multiple columns with different directions
 
 ### Join Types
 ```
@@ -175,6 +194,18 @@ RIGHT JOIN     → All from right + matches from left
 FULL OUTER JOIN → All rows from both tables
 CROSS JOIN     → Cartesian product (all combinations)
 SELF JOIN      → Table joined with itself
+```
+
+### Aggregate Functions
+```
+COUNT(*)       → Count all rows
+COUNT(column)  → Count non-NULL values
+SUM(column)    → Total of numeric column
+AVG(column)    → Average value
+MIN(column)    → Minimum value
+MAX(column)    → Maximum value
+GROUP BY       → Group rows for aggregation
+HAVING         → Filter aggregated results
 ```
 
 ### Set Operations
@@ -191,17 +222,19 @@ EXCEPT         → Rows in first but not in second
 - **Date/Time:** Work with dates (GETDATE, DATEADD, DATEDIFF, YEAR, MONTH)
 - **NULL:** Handle missing data (COALESCE, NULLIF, ISNULL, IS NULL)
 
+### CASE Expressions
+```
+Simple CASE    → Compare single value to multiple options
+Searched CASE  → Evaluate multiple conditions
+Usage          → In SELECT, WHERE, ORDER BY, GROUP BY
+```
+
 ### Window Functions
 ```
 OVER() Clause     → Define the window
 PARTITION BY      → Divide into groups
 ORDER BY          → Sort within window
 ROWS/RANGE        → Define frame boundaries
-
-Types:
-- Aggregate: SUM, AVG, COUNT OVER
-- Ranking: ROW_NUMBER, RANK, DENSE_RANK, NTILE
-- Value: LAG, LEAD, FIRST_VALUE, LAST_VALUE
 ```
 
 ---
@@ -210,13 +243,13 @@ Types:
 
 **Suggested Timeline:** 4-6 weeks
 
-- **Week 1-2:** Filtering, Joins (Lessons 1-3)
-- **Week 2-3:** Set Operators, Functions (Lessons 4-8)
-- **Week 3-4:** CASE, Aggregates (Lessons 9-10)
-- **Week 4-6:** Window Functions (Lessons 11-14)
+- **Week 1:** Database Enhancement, Data Modification, Filtering (Lessons 1-3)
+- **Week 2:** Sorting, Joins (Lessons 4-6)
+- **Week 3:** Aggregates, Set Operators, Functions (Lessons 7-12)
+- **Week 4-6:** CASE, Window Functions (Lessons 13-14)
 
 **Daily Study:** 30-60 minutes  
-**Practice:** Do exercises after each lesson
+**Practice:** Run all SQL files hands-on with TechStore database
 
 ---
 
@@ -225,60 +258,75 @@ Types:
 Before starting Intermediate level:
 
 ✅ **Completed Beginner Level**
+- Created TechStore database
+- Created basic tables: Products, Customers, Departments, Employees
+- Inserted sample data
 - Understanding of basic SELECT queries
-- Familiarity with WHERE, ORDER BY
-- Knowledge of DDL (CREATE TABLE)
-- Understanding of DML (INSERT, UPDATE, DELETE)
+- Knowledge of Primary Keys and Foreign Keys
 
 ✅ **Environment Setup**
 - SQL Server installed (or Docker container)
 - Client tool ready (SSMS, Azure Data Studio, or VS Code)
-- Sample databases created
+- TechStore database ready from Beginner lessons
 
 ✅ **Basic SQL Concepts**
 - Tables, rows, columns
 - Primary keys, foreign keys
-- Data types
+- Data types (VARCHAR, INT, DECIMAL, DATE)
 - NULL values
+- Basic INSERT statements
 
 ---
 
 ## 📊 Real-World Applications
 
-### What You'll Build
+### What You'll Build with TechStore
 
-**1. Customer Analytics**
+**1. Enhanced Product Catalog**
 ```sql
--- Find top customers per region with running totals
-SELECT 
-    Region,
-    CustomerName,
-    TotalOrders,
-    ROW_NUMBER() OVER (PARTITION BY Region ORDER BY TotalOrders DESC) AS Rank,
-    SUM(TotalOrders) OVER (PARTITION BY Region ORDER BY TotalOrders DESC) AS RunningTotal
-FROM CustomerSummary;
-```
-
-**2. Sales Reporting**
-```sql
--- Compare this year vs last year sales
+-- Show products with inventory status
 SELECT 
     ProductName,
-    SUM(CASE WHEN YEAR(OrderDate) = 2024 THEN Amount ELSE 0 END) AS Sales2024,
-    SUM(CASE WHEN YEAR(OrderDate) = 2023 THEN Amount ELSE 0 END) AS Sales2023
-FROM Sales
-GROUP BY ProductName;
+    Category,
+    Price,
+    StockQuantity,
+    CASE 
+        WHEN StockQuantity = 0 THEN 'Out of Stock'
+        WHEN StockQuantity < 10 THEN 'Low Stock'
+        ELSE 'In Stock'
+    END AS Status
+FROM Products
+WHERE IsActive = 1
+ORDER BY Category, ProductName;
 ```
 
-**3. Data Quality**
+**2. Customer Purchase Analysis**
 ```sql
--- Clean and standardize customer data
+-- Find top customers by total purchases
 SELECT 
-    CustomerID,
-    UPPER(TRIM(FirstName)) AS FirstName,
-    COALESCE(Email, 'No Email') AS Email,
-    DATEDIFF(day, SignupDate, GETDATE()) AS DaysSinceSignup
-FROM Customers;
+    c.CustomerName,
+    c.City,
+    c.State,
+    COUNT(s.SaleID) AS OrderCount,
+    SUM(s.TotalAmount) AS TotalSpent
+FROM Customers c
+LEFT JOIN Sales s ON c.CustomerID = s.CustomerID
+GROUP BY c.CustomerName, c.City, c.State
+ORDER BY TotalSpent DESC;
+```
+
+**3. Sales Reporting**
+```sql
+-- Monthly sales summary
+SELECT 
+    YEAR(SaleDate) AS Year,
+    MONTH(SaleDate) AS Month,
+    COUNT(*) AS TotalOrders,
+    SUM(TotalAmount) AS Revenue,
+    AVG(TotalAmount) AS AvgOrderValue
+FROM Sales
+GROUP BY YEAR(SaleDate), MONTH(SaleDate)
+ORDER BY Year DESC, Month DESC;
 ```
 
 ---
@@ -287,15 +335,19 @@ FROM Customers;
 
 After completing Intermediate level:
 
+- ✓ Enhance existing databases with ALTER TABLE
+- ✓ Modify data safely with UPDATE and DELETE
 - ✓ Write complex multi-table queries with confidence
 - ✓ Filter data using advanced conditions and pattern matching
-- ✓ Combine results from multiple queries
-- ✓ Transform data using built-in functions
-- ✓ Implement conditional logic with CASE statements
-- ✓ Perform powerful analytics with window functions
-- ✓ Generate business reports and dashboards
+- ✓ Sort results by multiple columns and directions
+- ✓ Combine data from multiple tables with various JOIN types
+- ✓ Perform aggregations and generate summary reports
+- ✓ Combine results from multiple queries with set operators
+- ✓ Transform data using built-in string, numeric, date, and NULL functions
+- ✓ Implement conditional logic with CASE expressions
+- ✓ Use basic window functions for analytics
 - ✓ Handle real-world data quality issues
-- ✓ Optimize queries for better performance
+- ✓ Build on incremental database design
 - ✓ Read and understand professional SQL code
 
 ---
@@ -328,4 +380,4 @@ Intermediate level prepares you for:
 
 ---
 
-**Ready to level up your SQL skills? Start with [Lesson 1: Filtering Data](./01-filtering-data/)! 🚀**
+**Ready to level up your SQL skills? Start with [Lesson 1: Database Enhancement](./01-database-enhancement/)! 🚀**
