@@ -1,7 +1,28 @@
 # Project 2: Data Vault 2.0 - Banking Compliance System
 
 ## Overview
-Build a **Data Vault 2.0** warehouse for a banking system. This architecture is perfect for industries requiring **strict audit trails, regulatory compliance, and historical tracking** (banking, healthcare, insurance).
+Build a **Data Vault 2.0** warehouse for a banking system using **professional schema-based organization**. This architecture is perfect for industries requiring **strict audit trails, regulatory compliance, and historical tracking** (banking, healthcare, insurance).
+
+## ✨ Architecture Highlights
+
+This project uses **SQL Server schemas** for proper Data Vault layer separation:
+
+```sql
+SecureBank_DataVault (Database)
+├── raw schema         -- Staging area for source data
+├── dv_hub schema      -- Business keys (immutable)
+├── dv_link schema     -- Relationships between entities
+├── dv_sat schema      -- Descriptive attributes (temporal)
+├── business_vault     -- Query-friendly views
+└── metadata schema    -- Pipeline tracking & audit
+```
+
+**Production-Ready Features:**
+- ✅ Schema-based organization (dv_hub.hub_customer, dv_sat.sat_customer_demographics)
+- ✅ MD5 hash keys for business key management
+- ✅ SCD Type 2 for complete history tracking
+- ✅ Metadata tracking with pipeline runs and data lineage
+- ✅ Compliance-ready reporting (SOX, GDPR, Basel III)
 
 ## What You'll Learn
 - **Hub tables**: Core business entities (Customer, Account, Transaction)
@@ -54,29 +75,37 @@ Store changing attributes
 
 ## Project Structure
 
-### Phase 1: Foundation (Hubs)
-1. `01-data-vault-setup.md` - Understand Data Vault concepts
-2. `02-create-hubs.sql` - Create hub tables (business keys)
-3. `03-load-hub-customer.sql` - Load unique customers
-4. `04-load-hub-account.sql` - Load unique accounts
-5. `05-load-hub-transaction.sql` - Load unique transactions
+### Phase 0: Setup
+- `00-setup-database.sql` - **NEW!** Creates SecureBank_DataVault database with 6 schemas, metadata tracking, and hash key functions
 
-### Phase 2: Relationships (Links)
-6. `06-create-links.sql` - Create link tables
-7. `07-load-link-customer-account.sql` - Connect customers to accounts
-8. `08-load-link-account-transaction.sql` - Connect accounts to transactions
-9. `09-link-queries.sql` - Query relationship history
+### Phase 1: Hubs (Foundation)
+Navigate to `01-hubs/`:
+1. `01-create-hubs.sql` - Create hub tables (`dv_hub.hub_customer`, `dv_hub.hub_account`, `dv_hub.hub_transaction`, `dv_hub.hub_branch`)
+2. `02-generate-sample-data.sql` - Generate 63K+ realistic banking records (customers, accounts, transactions, branches)
+3. `03-load-hubs.sql` - Load business keys into hubs with MD5 hash generation
 
-### Phase 3: Attributes (Satellites)
-10. `10-create-satellites.sql` - Create satellite tables
-11. `11-load-sat-customer-demographics.sql` - Track customer info changes
-12. `12-load-sat-account-details.sql` - Track account changes
-13. `13-temporal-queries.sql` - Query data "as of" any date
+**Hubs Created:** `dv_hub.hub_customer`, `dv_hub.hub_account`, `dv_hub.hub_transaction`, `dv_hub.hub_branch`
 
-### Phase 4: Business Intelligence
-14. `14-create-business-vault.sql` - Build query-friendly views
-15. `15-compliance-reports.sql` - Regulatory reporting queries
-16. `16-audit-trail.sql` - Track who changed what when
+### Phase 2: Links (Relationships)
+Navigate to `02-links/`:
+1. `01-create-links.sql` - Create link tables (`dv_link.link_customer_account`, `dv_link.link_account_transaction`, `dv_link.link_account_branch`)
+2. `02-load-links.sql` - Load relationships with composite hash keys
+
+**Links Created:** `dv_link.link_customer_account`, `dv_link.link_account_transaction`, `dv_link.link_account_branch`
+
+### Phase 3: Satellites (Attributes)
+Navigate to `03-satellites/`:
+1. `01-create-satellites.sql` - Create satellite tables with SCD Type 2 structure
+2. `02-load-satellites.sql` - Load descriptive attributes with hash diff detection
+
+**Satellites Created:** `dv_sat.sat_customer_demographics`, `dv_sat.sat_customer_status`, `dv_sat.sat_account_details`, `dv_sat.sat_transaction_details`, `dv_sat.sat_branch_info`
+
+### Phase 4: Business Vault (Query Layer)
+Navigate to `04-business-vault/`:
+1. `01-create-views.sql` - Create query-friendly views (customer 360, account details, transaction history, audit trail)
+2. `02-compliance-reports.sql` - Regulatory compliance reports (SOX, GDPR, Basel III, fraud detection)
+
+**Views Created:** `business_vault.vw_customer_360`, `business_vault.vw_account_details`, `business_vault.vw_transaction_history`, `business_vault.vw_customer_audit_trail`
 
 ## Real-World Example
 
@@ -206,14 +235,77 @@ Tracking every change uses more space
 - **Underwriting**: Risk assessment history
 - **Compliance**: State regulatory reporting
 
-## Expected Outcomes
+## How to Complete This Project
 
-By the end of this project:
-1. ✅ Understand Hub-Link-Satellite architecture
-2. ✅ Track every data change with timestamps
-3. ✅ Query data "as of" any historical date
-4. ✅ Build audit trail reports
-5. ✅ Understand when to use Data Vault vs other patterns
+### Step 0: Database Setup (NEW!)
+```sql
+-- Run this FIRST to create database and schemas
+00-setup-database.sql
+```
+Creates:
+- `SecureBank_DataVault` database
+- 6 schemas: `raw`, `dv_hub`, `dv_link`, `dv_sat`, `business_vault`, `metadata`
+- Metadata tracking tables
+- Hash key generator functions
+
+### Step 1: Build Foundation (Hubs)
+```
+cd 01-hubs/
+```
+1. Run `01-create-hubs.sql` - Creates 4 hub tables
+2. Run `02-generate-sample-data.sql` - Generates 63K+ records (~2 min)
+3. Run `03-load-hubs.sql` - Loads business keys with hash generation
+
+**Result:** 4 hub tables with ~13K unique business keys
+
+### Step 2: Connect Entities (Links)
+```
+cd 02-links/
+```
+1. Run `01-create-links.sql` - Creates 3 link tables
+2. Run `02-load-links.sql` - Loads relationships
+
+**Result:** 3 link tables tracking customer-account-transaction relationships
+
+### Step 3: Track Changes (Satellites)
+```
+cd 03-satellites/
+```
+1. Run `01-create-satellites.sql` - Creates 5 satellite tables
+2. Run `02-load-satellites.sql` - Loads attributes with SCD Type 2
+
+**Result:** 5 satellite tables with full history tracking (load_end_date pattern)
+
+### Step 4: Query & Report (Business Vault)
+```
+cd 04-business-vault/
+```
+1. Run `01-create-views.sql` - Creates 4 business views
+2. Run `02-compliance-reports.sql` - Runs 7 compliance reports
+
+**Result:** Easy-to-query views and regulatory compliance reports
+
+### Step 5: Explore Compliance Features
+```sql
+-- Query customer 360 view
+SELECT * FROM business_vault.vw_customer_360 
+WHERE customer_status = 'Active' 
+ORDER BY total_balance DESC;
+
+-- Point-in-time query (data as of 30 days ago)
+DECLARE @PointInTime DATETIME = DATEADD(DAY, -30, GETDATE());
+SELECT * FROM dv_sat.sat_customer_demographics
+WHERE load_date <= @PointInTime
+  AND (load_end_date IS NULL OR load_end_date > @PointInTime);
+
+-- Audit trail
+SELECT * FROM business_vault.vw_customer_audit_trail
+WHERE customer_id = 'CUST000001'
+ORDER BY change_date DESC;
+
+-- Check metadata
+SELECT * FROM metadata.pipeline_runs ORDER BY start_time DESC;
+```
 
 ## Time Estimate
 - Phase 1 (Hubs): 2-3 hours
