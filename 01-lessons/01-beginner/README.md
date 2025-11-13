@@ -4,24 +4,23 @@ Welcome to Beginner SQL! Learn SQL by building a **TechStore** database from scr
 
 ## 📁 What's In This Folder
 
-### 🎯 Simple, Progressive Learning Path
+### 🎯 Learning Path (Follow In Order)
 ```
-01-create-database/       ← START HERE! Create TechStore
-02-create-first-table/    ← Make your first Products table
-03-insert-data/           ← Add products to your store
-04-query-data/            ← View and filter products
-05-add-more-tables/       ← Add Customers and Orders
-06-table-relationships/   ← Connect tables with JOIN
+01-database-creation/     ← START HERE! Create TechStore database
+02-schemas-intro/         ← Learn about database schemas
+03-first-tables/          ← Create your first table
+04-inserting-data/        ← Add data to your tables
+05-primary-keys/          ← Understand primary keys
+06-foreign-keys/          ← Learn table relationships
+07-basic-select/          ← Query your data
 ```
 
-### 📚 Old Lessons (To Be Updated)
-```
-01-intro-to-sql/          ← Concepts (being updated)
-02-setup-environment/     ← Installation guide
-03-query-data/            ← Query concepts
-04-ddl-commands/          ← DDL concepts
-05-dml-commands/          ← DML concepts
-```
+### � Folder Structure
+Each folder follows this pattern:
+- `01-concept.md` - Teaching guide explaining the concept
+- `02-practice.sql` - First hands-on practice
+- `03-practice.sql` - More practice examples
+- `04-practice.sql` - Additional exercises (if needed)
 
 ---
 
