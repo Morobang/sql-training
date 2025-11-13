@@ -3,9 +3,10 @@
 -- ========================================
 -- Purpose: Create bronze tables to store raw data from source systems
 -- Key Principle: Store data "as-is" with minimal validation
+-- Architecture: Uses bronze schema for layer separation
 -- ========================================
 
-USE TechStore;
+USE TechStore_Warehouse;
 GO
 
 -- ========================================
@@ -15,11 +16,11 @@ GO
 -- Issues: Missing customer IDs, inconsistent date formats, bad data
 -- Strategy: Load everything as VARCHAR to prevent failures
 
-IF OBJECT_ID('bronze_orders', 'U') IS NOT NULL
-    DROP TABLE bronze_orders;
+IF OBJECT_ID('bronze.orders', 'U') IS NOT NULL
+    DROP TABLE bronze.orders;
 GO
 
-CREATE TABLE bronze_orders (
+CREATE TABLE bronze.orders (
     -- Source columns (all VARCHAR to handle any format)
     order_id VARCHAR(50),
     customer_id VARCHAR(50),         -- Can be NULL or empty
@@ -40,7 +41,7 @@ GO
 
 -- Create index on load timestamp for tracking
 CREATE INDEX idx_bronze_orders_loaded 
-ON bronze_orders(bronze_loaded_at);
+ON bronze.orders(bronze_loaded_at);
 GO
 
 -- ========================================
@@ -50,11 +51,11 @@ GO
 -- Issues: Duplicate records, invalid emails, mixed name formats
 -- Strategy: Keep all duplicates, clean in Silver
 
-IF OBJECT_ID('bronze_customers', 'U') IS NOT NULL
-    DROP TABLE bronze_customers;
+IF OBJECT_ID('bronze.customers', 'U') IS NOT NULL
+    DROP TABLE bronze.customers;
 GO
 
-CREATE TABLE bronze_customers (
+CREATE TABLE bronze.customers (
     -- Source columns
     customer_id VARCHAR(50),
     full_name VARCHAR(200),          -- Sometimes "First Last", sometimes "Last, First"
@@ -74,7 +75,7 @@ CREATE TABLE bronze_customers (
 GO
 
 CREATE INDEX idx_bronze_customers_loaded 
-ON bronze_customers(bronze_loaded_at);
+ON bronze.customers(bronze_loaded_at);
 GO
 
 -- ========================================
@@ -84,11 +85,11 @@ GO
 -- Issues: Nested JSON, quantity can be negative, price inconsistencies
 -- Strategy: Store flattened JSON, all as VARCHAR
 
-IF OBJECT_ID('bronze_inventory', 'U') IS NOT NULL
-    DROP TABLE bronze_inventory;
+IF OBJECT_ID('bronze.inventory', 'U') IS NOT NULL
+    DROP TABLE bronze.inventory;
 GO
 
-CREATE TABLE bronze_inventory (
+CREATE TABLE bronze.inventory (
     -- Source columns (flattened from JSON)
     product_id VARCHAR(50),
     product_code VARCHAR(100),       -- Sometimes includes special characters
@@ -113,21 +114,60 @@ CREATE TABLE bronze_inventory (
 GO
 
 CREATE INDEX idx_bronze_inventory_loaded 
-ON bronze_inventory(bronze_loaded_at);
+ON bronze.inventory(bronze_loaded_at);
 GO
 
 -- ========================================
--- Bronze Table 4: Sales Transactions
+-- Verification Queries
 -- ========================================
--- Source: Point of sale system
--- Issues: Duplicate transactions, refunds mixed with sales
--- Strategy: Keep everything, identify refunds in Silver
 
-IF OBJECT_ID('bronze_sales', 'U') IS NOT NULL
-    DROP TABLE bronze_sales;
+-- Check table structures
+SELECT 
+    s.name AS schema_name,
+    t.name AS table_name,
+    (SELECT COUNT(*) FROM sys.columns WHERE object_id = t.object_id) AS column_count
+FROM sys.tables t
+JOIN sys.schemas s ON t.schema_id = s.schema_id
+WHERE s.name = 'bronze'
+ORDER BY t.name;
 GO
 
-CREATE TABLE bronze_sales (
+-- Show columns for each bronze table
+SELECT 
+    s.name AS schema_name,
+    t.name AS table_name,
+    c.name AS column_name,
+    ty.name AS data_type,
+    c.max_length
+FROM sys.columns c
+JOIN sys.tables t ON c.object_id = t.object_id
+JOIN sys.schemas s ON t.schema_id = s.schema_id
+JOIN sys.types ty ON c.user_type_id = ty.user_type_id
+WHERE s.name = 'bronze'
+ORDER BY t.name, c.column_id;
+GO
+
+-- ========================================
+-- Log to Metadata
+-- ========================================
+
+INSERT INTO metadata.data_lineage (source_layer, source_table, target_layer, target_table, transformation_logic)
+VALUES 
+    ('source', 'orders_csv', 'bronze', 'orders', 'Raw CSV import - no transformation'),
+    ('source', 'crm_customers', 'bronze', 'customers', 'Raw CRM export - no transformation'),
+    ('source', 'warehouse_api', 'bronze', 'inventory', 'Flattened JSON from API - no transformation');
+GO
+
+PRINT '';
+PRINT '========================================';
+PRINT 'BRONZE TABLES CREATED SUCCESSFULLY!';
+PRINT '========================================';
+PRINT 'Schema: bronze';
+PRINT 'Tables: orders, customers, inventory';
+PRINT '';
+PRINT 'Next: Run 02-generate-sample-data.sql';
+PRINT '========================================';
+GO
     -- Source columns
     transaction_id VARCHAR(50),
     order_id VARCHAR(50),
