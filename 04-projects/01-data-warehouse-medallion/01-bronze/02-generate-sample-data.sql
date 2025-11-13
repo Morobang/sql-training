@@ -14,6 +14,7 @@ VALUES ('bronze', '02-generate-sample-data.sql', 'running');
 GO
 
 DECLARE @run_id INT = SCOPE_IDENTITY();
+GO
 
 -- ========================================
 -- Helper: Date Function (generates random dates)
@@ -26,7 +27,13 @@ CREATE OR ALTER FUNCTION dbo.fn_RandomDate
 RETURNS VARCHAR(50)
 AS
 BEGIN
-    DECLARE @RandomDays INT = ABS(CHECKSUM(NEWID())) % DATEDIFF(DAY, @StartDate, @EndDate);
+    DECLARE @DaysDiff INT = DATEDIFF(DAY, @StartDate, @EndDate);
+    
+    -- Prevent divide-by-zero error
+    IF @DaysDiff = 0
+        SET @DaysDiff = 1;
+    
+    DECLARE @RandomDays INT = ABS(CHECKSUM(NEWID())) % @DaysDiff;
     DECLARE @RandomDate DATE = DATEADD(DAY, @RandomDays, @StartDate);
     
     -- Return in different formats to simulate messy data

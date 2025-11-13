@@ -2,7 +2,7 @@
 -- Clean and Load Silver Orders
 -- ========================================
 
-USE TechStore;
+USE TechStore_Warehouse;
 GO
 
 PRINT 'Cleaning orders data from bronze to silver...';
@@ -26,10 +26,10 @@ WITH cleaned_orders AS (
         payment_method,
         order_status,
         bronze_row_number
-    FROM bronze_orders
+    FROM bronze.orders
     WHERE order_id IS NOT NULL
 )
-INSERT INTO silver_orders (
+INSERT INTO silver.orders (
     order_id, customer_id, product_id, product_name, quantity, 
     unit_price, total_amount, order_date, payment_method, order_status, bronze_row_id
 )
@@ -54,7 +54,7 @@ WHERE quantity_clean > 0
 GO
 
 PRINT 'Orders cleaning complete!';
-PRINT 'Bronze: ' + CAST((SELECT COUNT(*) FROM bronze_orders) AS VARCHAR);
-PRINT 'Silver: ' + CAST((SELECT COUNT(*) FROM silver_orders) AS VARCHAR);
+PRINT 'Bronze: ' + CAST((SELECT COUNT(*) FROM bronze.orders) AS VARCHAR);
+PRINT 'Silver: ' + CAST((SELECT COUNT(*) FROM silver.orders) AS VARCHAR);
 PRINT '';
 GO

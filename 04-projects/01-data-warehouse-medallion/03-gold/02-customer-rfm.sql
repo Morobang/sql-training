@@ -4,14 +4,14 @@
 -- Purpose: Recency, Frequency, Monetary segmentation
 -- ========================================
 
-USE TechStore;
+USE TechStore_Warehouse;
 GO
 
-IF OBJECT_ID('gold_customer_rfm', 'U') IS NOT NULL
-    DROP TABLE gold_customer_rfm;
+IF OBJECT_ID('gold.customer_rfm', 'U') IS NOT NULL
+    DROP TABLE gold.customer_rfm;
 GO
 
-CREATE TABLE gold_customer_rfm (
+CREATE TABLE gold.customer_rfm (
     customer_key INT PRIMARY KEY,
     customer_id VARCHAR(50),
     customer_name VARCHAR(200),
@@ -49,8 +49,8 @@ WITH rfm_calc AS (
         -- M: Total spent
         SUM(o.total_amount) AS monetary_value
         
-    FROM silver_customers c
-    LEFT JOIN silver_orders o ON c.customer_key = o.customer_key
+    FROM silver.customers c
+    LEFT JOIN silver.orders o ON c.customer_key = o.customer_key
     GROUP BY c.customer_key, c.customer_id, c.full_name
 ),
 rfm_scores AS (
@@ -84,7 +84,7 @@ rfm_scores AS (
         END AS monetary_score
     FROM rfm_calc
 )
-INSERT INTO gold_customer_rfm
+INSERT INTO gold.customer_rfm
 SELECT 
     customer_key,
     customer_id,
@@ -114,7 +114,7 @@ GO
 
 PRINT 'RFM Analysis complete!';
 SELECT rfm_segment, COUNT(*) AS customer_count
-FROM gold_customer_rfm
+FROM gold.customer_rfm
 GROUP BY rfm_segment
 ORDER BY customer_count DESC;
 GO

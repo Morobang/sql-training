@@ -5,18 +5,18 @@
 -- Key Difference from Bronze: Strong typing, constraints, relationships
 -- ========================================
 
-USE TechStore;
+USE TechStore_Warehouse;
 GO
 
 -- ========================================
 -- Silver Table 1: Customers (Cleaned)
 -- ========================================
 
-IF OBJECT_ID('silver_customers', 'U') IS NOT NULL
-    DROP TABLE silver_customers;
+IF OBJECT_ID('silver.customers', 'U') IS NOT NULL
+    DROP TABLE silver.customers;
 GO
 
-CREATE TABLE silver_customers (
+CREATE TABLE silver.customers (
     customer_key INT IDENTITY(1,1) PRIMARY KEY,  -- Surrogate key
     customer_id VARCHAR(50) NOT NULL UNIQUE,     -- Business key
     
@@ -46,20 +46,20 @@ CREATE TABLE silver_customers (
 GO
 
 -- Indexes for common queries
-CREATE INDEX idx_silver_customers_email ON silver_customers(email);
-CREATE INDEX idx_silver_customers_tier ON silver_customers(customer_tier);
-CREATE INDEX idx_silver_customers_city ON silver_customers(city);
+CREATE INDEX idx_silver.customers_email ON silver.customers(email);
+CREATE INDEX idx_silver.customers_tier ON silver.customers(customer_tier);
+CREATE INDEX idx_silver.customers_city ON silver.customers(city);
 GO
 
 -- ========================================
 -- Silver Table 2: Products/Inventory (Cleaned)
 -- ========================================
 
-IF OBJECT_ID('silver_products', 'U') IS NOT NULL
-    DROP TABLE silver_products;
+IF OBJECT_ID('silver.products', 'U') IS NOT NULL
+    DROP TABLE silver.products;
 GO
 
-CREATE TABLE silver_products (
+CREATE TABLE silver.products (
     product_key INT IDENTITY(1,1) PRIMARY KEY,   -- Surrogate key
     product_id VARCHAR(50) NOT NULL UNIQUE,      -- Business key
     
@@ -101,26 +101,26 @@ CREATE TABLE silver_products (
 GO
 
 -- Indexes
-CREATE INDEX idx_silver_products_category ON silver_products(category);
-CREATE INDEX idx_silver_products_supplier ON silver_products(supplier_id);
-CREATE INDEX idx_silver_products_active ON silver_products(is_active);
+CREATE INDEX idx_silver.products_category ON silver.products(category);
+CREATE INDEX idx_silver.products_supplier ON silver.products(supplier_id);
+CREATE INDEX idx_silver.products_active ON silver.products(is_active);
 GO
 
 -- ========================================
 -- Silver Table 3: Orders (Cleaned)
 -- ========================================
 
-IF OBJECT_ID('silver_orders', 'U') IS NOT NULL
-    DROP TABLE silver_orders;
+IF OBJECT_ID('silver.orders', 'U') IS NOT NULL
+    DROP TABLE silver.orders;
 GO
 
-CREATE TABLE silver_orders (
+CREATE TABLE silver.orders (
     order_key INT IDENTITY(1,1) PRIMARY KEY,     -- Surrogate key
     order_id VARCHAR(50) NOT NULL UNIQUE,        -- Business key
     
     -- Foreign keys
-    customer_key INT,                             -- Will link to silver_customers
-    product_key INT,                              -- Will link to silver_products
+    customer_key INT,                             -- Will link to silver.customers
+    product_key INT,                              -- Will link to silver.products
     customer_id VARCHAR(50),                      -- Also keep business keys
     product_id VARCHAR(50),
     
@@ -147,10 +147,10 @@ CREATE TABLE silver_orders (
 GO
 
 -- Indexes
-CREATE INDEX idx_silver_orders_customer ON silver_orders(customer_key);
-CREATE INDEX idx_silver_orders_product ON silver_orders(product_key);
-CREATE INDEX idx_silver_orders_date ON silver_orders(order_date);
-CREATE INDEX idx_silver_orders_status ON silver_orders(order_status);
+CREATE INDEX idx_silver.orders_customer ON silver.orders(customer_key);
+CREATE INDEX idx_silver.orders_product ON silver.orders(product_key);
+CREATE INDEX idx_silver.orders_date ON silver.orders(order_date);
+CREATE INDEX idx_silver.orders_status ON silver.orders(order_status);
 GO
 
 -- ========================================
@@ -189,5 +189,5 @@ ORDER BY TABLE_NAME, ORDINAL_POSITION;
 GO
 
 PRINT 'Silver tables created successfully!';
-PRINT 'Next: Run 02-clean-customers.sql to populate silver_customers';
+PRINT 'Next: Run 02-clean-customers.sql to populate silver.customers';
 GO

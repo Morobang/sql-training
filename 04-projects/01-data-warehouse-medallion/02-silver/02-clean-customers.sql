@@ -4,7 +4,7 @@
 -- Purpose: Transform bronze customers into clean silver data
 -- ========================================
 
-USE TechStore;
+USE TechStore_Warehouse;
 GO
 
 PRINT 'Cleaning customer data from bronze to silver...';
@@ -80,11 +80,11 @@ WITH cleaned_customers AS (
         -- Deduplication: rank by most recent load
         ROW_NUMBER() OVER (PARTITION BY customer_id ORDER BY bronze_loaded_at DESC) AS row_rank
         
-    FROM bronze_customers
+    FROM bronze.customers
     WHERE customer_id IS NOT NULL 
       AND customer_id <> ''  -- Remove records with missing customer_id
 )
-INSERT INTO silver_customers (
+INSERT INTO silver.customers (
     customer_id, first_name, last_name, full_name, email, phone, 
     city, state, zip_code, join_date, customer_tier, bronze_row_id
 )
@@ -111,9 +111,9 @@ GO
 
 PRINT '';
 PRINT 'Customer cleaning complete!';
-PRINT 'Bronze records: ' + CAST((SELECT COUNT(*) FROM bronze_customers) AS VARCHAR);
-PRINT 'Silver records: ' + CAST((SELECT COUNT(*) FROM silver_customers) AS VARCHAR);
-PRINT 'Records removed: ' + CAST((SELECT COUNT(*) FROM bronze_customers) - (SELECT COUNT(*) FROM silver_customers) AS VARCHAR);
+PRINT 'Bronze records: ' + CAST((SELECT COUNT(*) FROM bronze.customers) AS VARCHAR);
+PRINT 'Silver records: ' + CAST((SELECT COUNT(*) FROM silver.customers) AS VARCHAR);
+PRINT 'Records removed: ' + CAST((SELECT COUNT(*) FROM bronze.customers) - (SELECT COUNT(*) FROM silver.customers) AS VARCHAR);
 PRINT '';
 
 -- Show sample of cleaned data
@@ -124,6 +124,6 @@ SELECT TOP 10
     email,
     phone,
     customer_tier
-FROM silver_customers
+FROM silver.customers
 ORDER BY customer_key;
 GO

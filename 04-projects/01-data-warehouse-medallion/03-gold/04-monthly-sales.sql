@@ -2,14 +2,14 @@
 -- Gold: Monthly Sales Trends
 -- ========================================
 
-USE TechStore;
+USE TechStore_Warehouse;
 GO
 
-IF OBJECT_ID('gold_monthly_sales', 'U') IS NOT NULL
-    DROP TABLE gold_monthly_sales;
+IF OBJECT_ID('gold.monthly_sales', 'U') IS NOT NULL
+    DROP TABLE gold.monthly_sales;
 GO
 
-CREATE TABLE gold_monthly_sales (
+CREATE TABLE gold.monthly_sales (
     month_key INT PRIMARY KEY IDENTITY,
     year INT,
     month INT,
@@ -40,10 +40,10 @@ WITH monthly_agg AS (
         COUNT(DISTINCT customer_key) AS unique_customers,
         SUM(total_amount) AS total_revenue,
         AVG(total_amount) AS avg_order_value
-    FROM silver_orders
+    FROM silver.orders
     GROUP BY YEAR(order_date), MONTH(order_date), DATENAME(MONTH, order_date)
 )
-INSERT INTO gold_monthly_sales (
+INSERT INTO gold.monthly_sales (
     year, month, month_name, month_start_date,
     order_count, unique_customers, total_revenue, avg_order_value,
     revenue_vs_prior_month, revenue_growth_pct
@@ -64,5 +64,5 @@ FROM monthly_agg;
 GO
 
 PRINT 'Monthly sales trends created!';
-SELECT * FROM gold_monthly_sales ORDER BY year DESC, month DESC;
+SELECT * FROM gold.monthly_sales ORDER BY year DESC, month DESC;
 GO

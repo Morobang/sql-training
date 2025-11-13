@@ -5,7 +5,7 @@
 -- This helps us plan what to fix in the Silver layer
 -- ========================================
 
-USE TechStore;
+USE TechStore_Warehouse;
 GO
 
 PRINT '========================================';
@@ -20,25 +20,25 @@ PRINT '1. RECORD COUNTS';
 PRINT '----------------------------------------';
 
 SELECT 
-    'bronze_customers' AS table_name,
+    'bronze.customers' AS table_name,
     COUNT(*) AS total_records,
     COUNT(DISTINCT customer_id) AS unique_ids,
     COUNT(*) - COUNT(DISTINCT customer_id) AS duplicate_count
-FROM bronze_customers
+FROM bronze.customers
 UNION ALL
 SELECT 
-    'bronze_inventory',
+    'bronze.inventory',
     COUNT(*),
     COUNT(DISTINCT product_id),
     COUNT(*) - COUNT(DISTINCT product_id)
-FROM bronze_inventory
+FROM bronze.inventory
 UNION ALL
 SELECT 
-    'bronze_orders',
+    'bronze.orders',
     COUNT(*),
     COUNT(DISTINCT order_id),
     COUNT(*) - COUNT(DISTINCT order_id)
-FROM bronze_orders;
+FROM bronze.orders;
 GO
 
 PRINT '';
@@ -49,37 +49,37 @@ PRINT '----------------------------------------';
 SELECT 
     'Missing Customer IDs' AS issue_type,
     COUNT(*) AS record_count
-FROM bronze_customers
+FROM bronze.customers
 WHERE customer_id IS NULL OR customer_id = ''
 UNION ALL
 SELECT 
     'Invalid Emails (NULL)',
     COUNT(*)
-FROM bronze_customers
+FROM bronze.customers
 WHERE email IS NULL
 UNION ALL
 SELECT 
     'Invalid Emails (missing @)',
     COUNT(*)
-FROM bronze_customers
+FROM bronze.customers
 WHERE email NOT LIKE '%@%' AND email IS NOT NULL
 UNION ALL
 SELECT 
     'Missing Phone Numbers',
     COUNT(*)
-FROM bronze_customers
+FROM bronze.customers
 WHERE phone IS NULL OR phone = ''
 UNION ALL
 SELECT 
     'Empty Customer Tier',
     COUNT(*)
-FROM bronze_customers
+FROM bronze.customers
 WHERE customer_tier = '' OR customer_tier IS NULL
 UNION ALL
 SELECT 
     'Duplicate Records',
     COUNT(*) - COUNT(DISTINCT customer_id)
-FROM bronze_customers;
+FROM bronze.customers;
 GO
 
 -- Name Format Variations
@@ -92,7 +92,7 @@ SELECT
         ELSE 'Single name only'
     END AS name_format,
     COUNT(*) AS count
-FROM bronze_customers
+FROM bronze.customers
 GROUP BY 
     CASE 
         WHEN full_name LIKE '%, %' THEN 'Last, First format'
@@ -109,31 +109,31 @@ PRINT '----------------------------------------';
 SELECT 
     'Products with $ in price' AS issue_type,
     COUNT(*) AS record_count
-FROM bronze_inventory
+FROM bronze.inventory
 WHERE sell_price LIKE '%$%'
 UNION ALL
 SELECT 
     'Products with comma in price',
     COUNT(*)
-FROM bronze_inventory
+FROM bronze.inventory
 WHERE cost_price LIKE '%,%'
 UNION ALL
 SELECT 
     'Negative Stock Quantity',
     COUNT(*)
-FROM bronze_inventory
+FROM bronze.inventory
 WHERE TRY_CAST(stock_quantity AS INT) < 0
 UNION ALL
 SELECT 
     'Non-numeric Stock Quantity',
     COUNT(*)
-FROM bronze_inventory
+FROM bronze.inventory
 WHERE stock_quantity NOT LIKE '%[0-9]%' OR stock_quantity LIKE '%[^0-9-]%'
 UNION ALL
 SELECT 
     'Empty is_active Flag',
     COUNT(*)
-FROM bronze_inventory
+FROM bronze.inventory
 WHERE is_active = '' OR is_active IS NULL;
 GO
 
@@ -143,7 +143,7 @@ PRINT 'is_active Value Variations:';
 SELECT 
     is_active,
     COUNT(*) AS count
-FROM bronze_inventory
+FROM bronze.inventory
 GROUP BY is_active
 ORDER BY count DESC;
 GO
@@ -155,31 +155,31 @@ PRINT '----------------------------------------';
 SELECT 
     'Orders with Missing Customer ID' AS issue_type,
     COUNT(*) AS record_count
-FROM bronze_orders
+FROM bronze.orders
 WHERE customer_id IS NULL OR customer_id = ''
 UNION ALL
 SELECT 
     'Orders with $ in Amount',
     COUNT(*)
-FROM bronze_orders
+FROM bronze.orders
 WHERE total_amount LIKE '%$%'
 UNION ALL
 SELECT 
     'Orders with Negative Quantity',
     COUNT(*)
-FROM bronze_orders
+FROM bronze.orders
 WHERE TRY_CAST(quantity AS INT) < 0
 UNION ALL
 SELECT 
     'Orders with Non-numeric Quantity',
     COUNT(*)
-FROM bronze_orders
+FROM bronze.orders
 WHERE quantity LIKE '%[^0-9-]%'
 UNION ALL
 SELECT 
     'Orders with Invalid Dates',
     COUNT(*)
-FROM bronze_orders
+FROM bronze.orders
 WHERE TRY_CAST(order_date AS DATE) IS NULL;
 GO
 
@@ -196,7 +196,7 @@ SELECT TOP 20
         WHEN order_date LIKE '____-__-__ __:__:__' THEN 'YYYY-MM-DD HH:MM:SS'
         ELSE 'Unknown/Invalid'
     END AS likely_format
-FROM bronze_orders
+FROM bronze.orders
 GROUP BY order_date
 ORDER BY count DESC;
 GO
@@ -209,11 +209,11 @@ PRINT '----------------------------------------';
 SELECT 
     'Orders with Invalid Customer ID' AS issue_type,
     COUNT(*) AS record_count
-FROM bronze_orders o
+FROM bronze.orders o
 WHERE o.customer_id IS NOT NULL 
   AND o.customer_id <> ''
   AND NOT EXISTS (
-      SELECT 1 FROM bronze_customers c 
+      SELECT 1 FROM bronze.customers c 
       WHERE c.customer_id = o.customer_id
   );
 GO
@@ -222,10 +222,10 @@ GO
 SELECT 
     'Orders with Invalid Product ID' AS issue_type,
     COUNT(*) AS record_count
-FROM bronze_orders o
+FROM bronze.orders o
 WHERE o.product_id IS NOT NULL 
   AND NOT EXISTS (
-      SELECT 1 FROM bronze_inventory i 
+      SELECT 1 FROM bronze.inventory i 
       WHERE i.product_id = o.product_id
   );
 GO
@@ -235,25 +235,25 @@ PRINT '6. DATA FRESHNESS';
 PRINT '----------------------------------------';
 
 SELECT 
-    'bronze_customers' AS table_name,
+    'bronze.customers' AS table_name,
     MIN(bronze_loaded_at) AS first_load,
     MAX(bronze_loaded_at) AS last_load,
     COUNT(*) AS total_records
-FROM bronze_customers
+FROM bronze.customers
 UNION ALL
 SELECT 
-    'bronze_inventory',
+    'bronze.inventory',
     MIN(bronze_loaded_at),
     MAX(bronze_loaded_at),
     COUNT(*)
-FROM bronze_inventory
+FROM bronze.inventory
 UNION ALL
 SELECT 
-    'bronze_orders',
+    'bronze.orders',
     MIN(bronze_loaded_at),
     MAX(bronze_loaded_at),
     COUNT(*)
-FROM bronze_orders;
+FROM bronze.orders;
 GO
 
 PRINT '';

@@ -2,14 +2,14 @@
 -- Gold: Product Performance Analytics
 -- ========================================
 
-USE TechStore;
+USE TechStore_Warehouse;
 GO
 
-IF OBJECT_ID('gold_product_performance', 'U') IS NOT NULL
-    DROP TABLE gold_product_performance;
+IF OBJECT_ID('gold.product_performance', 'U') IS NOT NULL
+    DROP TABLE gold.product_performance;
 GO
 
-CREATE TABLE gold_product_performance (
+CREATE TABLE gold.product_performance (
     product_key INT PRIMARY KEY,
     product_id VARCHAR(50),
     product_name VARCHAR(200),
@@ -57,8 +57,8 @@ WITH product_sales AS (
         COALESCE(SUM(o.total_amount), 0) AS total_revenue,
         COALESCE(AVG(o.unit_price), p.sell_price) AS avg_unit_price
         
-    FROM silver_products p
-    LEFT JOIN silver_orders o ON p.product_key = o.product_key
+    FROM silver.products p
+    LEFT JOIN silver.orders o ON p.product_key = o.product_key
     GROUP BY 
         p.product_key, p.product_id, p.product_name, p.category,
         p.cost_price, p.sell_price, p.stock_quantity, p.reorder_level
@@ -88,7 +88,7 @@ with_profit AS (
         END AS days_of_stock
     FROM product_sales
 )
-INSERT INTO gold_product_performance
+INSERT INTO gold.product_performance
 SELECT 
     product_key,
     product_id,
@@ -123,6 +123,6 @@ SELECT TOP 10
     total_revenue,
     profit_margin_pct,
     stock_status
-FROM gold_product_performance
+FROM gold.product_performance
 ORDER BY total_revenue DESC;
 GO

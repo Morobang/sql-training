@@ -2,7 +2,7 @@
 -- Clean and Load Silver Products
 -- ========================================
 
-USE TechStore;
+USE TechStore_Warehouse;
 GO
 
 PRINT 'Cleaning inventory data from bronze to silver...';
@@ -39,10 +39,10 @@ WITH cleaned_inventory AS (
         END AS active_clean,
         
         bronze_row_number
-    FROM bronze_inventory
+    FROM bronze.inventory
     WHERE product_id IS NOT NULL
 )
-INSERT INTO silver_products (
+INSERT INTO silver.products (
     product_id, product_code, product_name, category, supplier_id, supplier_name,
     cost_price, sell_price, stock_quantity, reorder_level, warehouse_location,
     last_restocked, is_active, bronze_row_id
@@ -58,7 +58,7 @@ WHERE cost_clean IS NOT NULL
 GO
 
 PRINT 'Inventory cleaning complete!';
-PRINT 'Bronze: ' + CAST((SELECT COUNT(*) FROM bronze_inventory) AS VARCHAR);
-PRINT 'Silver: ' + CAST((SELECT COUNT(*) FROM silver_products) AS VARCHAR);
+PRINT 'Bronze: ' + CAST((SELECT COUNT(*) FROM bronze.inventory) AS VARCHAR);
+PRINT 'Silver: ' + CAST((SELECT COUNT(*) FROM silver.products) AS VARCHAR);
 PRINT '';
 GO

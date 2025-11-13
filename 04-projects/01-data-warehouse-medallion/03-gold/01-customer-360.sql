@@ -4,14 +4,14 @@
 -- Purpose: Complete customer profile for analytics
 -- ========================================
 
-USE TechStore;
+USE TechStore_Warehouse;
 GO
 
-IF OBJECT_ID('gold_customer_360', 'U') IS NOT NULL
-    DROP TABLE gold_customer_360;
+IF OBJECT_ID('gold.customer_360', 'U') IS NOT NULL
+    DROP TABLE gold.customer_360;
 GO
 
-CREATE TABLE gold_customer_360 (
+CREATE TABLE gold.customer_360 (
     customer_key INT PRIMARY KEY,
     customer_id VARCHAR(50),
     customer_name VARCHAR(200),
@@ -42,7 +42,7 @@ CREATE TABLE gold_customer_360 (
 );
 GO
 
-INSERT INTO gold_customer_360
+INSERT INTO gold.customer_360
 SELECT 
     c.customer_key,
     c.customer_id,
@@ -81,19 +81,19 @@ SELECT
     END AS is_vip,
     
     GETDATE()
-FROM silver_customers c
-LEFT JOIN silver_orders o ON c.customer_key = o.customer_key
+FROM silver.customers c
+LEFT JOIN silver.orders o ON c.customer_key = o.customer_key
 GROUP BY 
     c.customer_key, c.customer_id, c.full_name, c.email, c.phone,
     c.city, c.customer_tier, c.join_date;
 GO
 
 -- Create indexes
-CREATE INDEX idx_gold_customer_status ON gold_customer_360(customer_status);
-CREATE INDEX idx_gold_customer_tier ON gold_customer_360(customer_tier);
-CREATE INDEX idx_gold_customer_vip ON gold_customer_360(is_vip);
+CREATE INDEX idx_gold_customer_status ON gold.customer_360(customer_status);
+CREATE INDEX idx_gold_customer_tier ON gold.customer_360(customer_tier);
+CREATE INDEX idx_gold_customer_vip ON gold.customer_360(is_vip);
 GO
 
 PRINT 'Customer 360° table created!';
-SELECT TOP 10 * FROM gold_customer_360 ORDER BY lifetime_value DESC;
+SELECT TOP 10 * FROM gold.customer_360 ORDER BY lifetime_value DESC;
 GO
